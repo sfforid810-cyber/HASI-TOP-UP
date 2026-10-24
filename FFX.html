@@ -2,11 +2,8 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=overlays-content">
 <meta name="theme-color" content="#ffffff">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <link rel="icon" type="image/jpeg" href="Main logo.jpg">
 <link rel="shortcut icon" href="Main logo.jpg">
 <link rel="apple-touch-icon" href="Main logo.jpg">
@@ -15,9 +12,9 @@
 <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
 /* Hasi site: use the same Firebase project as the existing admin/user files. */
 window.FIREBASE_CONFIG = {
@@ -36,6 +33,7 @@ window.ADMIN_EMAILS = window.ADMIN_EMAILS || ["admin@gmail.com"];
 // INSTANT CONFIG LOADER & CACHE-BUSTER (Render Live Update)
 // =======================================================
 window.ACCOUNT_CONFIG = window.ACCOUNT_CONFIG || {};
+(function(){try{if(/\/admin\/?$/.test(location.pathname)){location.replace(location.pathname.replace(/\/admin\/?$/,'')+'/admin/index.html')}}catch(e){}})();
 
 function syncAccountLinks() {
   var siteName = (typeof website_name !== 'undefined' ? website_name : (window.website_name || (window.ACCOUNT_CONFIG && window.ACCOUNT_CONFIG.websiteName) || '')).trim();
@@ -117,7 +115,7 @@ window.syncAccountLinks = syncAccountLinks;
 <style>
 :root{--bg:#f5f8ff;--card:#fff;--bd:#e1e8f5;--v:#2563eb;--v2:#3b82f6;--gold:#93c5fd;--tx:#0f172a;--mu:#666b85;--g:linear-gradient(135deg,#3b82f6,#1d4ed8)}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#2563eb #f0f5ff}
+html{scrollbar-width:thin;scrollbar-color:#2563eb #f0f5ff}
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:#f0f5ff}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#3b82f6,#1d4ed8);border-radius:99px}
@@ -144,8 +142,8 @@ header{position:sticky;top:0;z-index:40;background:#ffffff;border-bottom:1px sol
 .hr{display:flex;align-items:center;gap:12px}
 .wallet{display:flex;align-items:center;gap:8px;height:42px;padding:0 16px 0 12px;border-radius:99px;background:var(--g);color:#fff;font-weight:700;font-size:15px;box-shadow:0 8px 18px -6px rgba(37,99,235,.6)}
 .wallet svg{font-size:19px}
-.avatar{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);box-shadow:0 6px 14px -4px rgba(37,99,235,.5);cursor:pointer;transition:.2s}
-.avatar:hover{transform:scale(1.05)}
+.avatar{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);box-shadow:0 6px 14px -4px rgba(37,99,235,.5);cursor:pointer;transition:transform .15s ease}
+@media(hover:hover) and (pointer:fine){.avatar:hover{transform:scale(1.05)}}
 .avatar:active{transform:scale(.95)}
 .avatar .av-inner{width:100%;height:100%;border-radius:50%;background:#eff6ff;display:flex;align-items:center;justify-content:center;color:#2563eb}
 .avatar .av-inner svg{width:21px;height:21px;stroke-width:2.2}
@@ -182,8 +180,7 @@ header{position:sticky;top:0;z-index:40;background:#ffffff;border-bottom:1px sol
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .card{position:relative;border-radius:20px;overflow:hidden;background:#fff;border:1.8px solid #111827;box-shadow:0 5px 0 #111827,0 10px 20px -3px rgba(17,24,39,.26);transition:.25s cubic-bezier(.2,1,.3,1);-webkit-transform:translateZ(0);transform:translateZ(0);backface-visibility:hidden;-webkit-backface-visibility:hidden;contain:layout paint}
 .card:before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(160deg,rgba(155,108,255,.9),transparent 55%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.3s;pointer-events:none;z-index:2;will-change:opacity}
-.card:hover{transform:translateY(-4px);box-shadow:0 8px 0 #111827,0 18px 28px -4px rgba(17,24,39,.36)}
-.card:hover:before{opacity:1}
+@media(hover:hover) and (pointer:fine){.card:hover{transform:translateY(-4px);box-shadow:0 8px 0 #111827,0 18px 28px -4px rgba(17,24,39,.36)}.card:hover:before{opacity:1}}
 .card:active{transform:translateY(3px);box-shadow:0 2px 0 #111827,0 6px 12px rgba(17,24,39,.25)}
 .thumb{aspect-ratio:1/1;border-radius:0}
 .card p{display:flex;align-items:center;justify-content:center;gap:6px;min-height:50px;padding:8px 6px;font-size:11.5px;font-weight:700;color:#111827;text-align:center;text-transform:uppercase;letter-spacing:.2px}
@@ -218,16 +215,19 @@ footer h2{margin:30px 0 12px;font-size:26px;font-weight:800;letter-spacing:-.6px
 .fab{position:fixed;right:16px;bottom:90px;z-index:50;display:flex;flex-direction:column;align-items:flex-end;gap:10px;padding-bottom:env(safe-area-inset-bottom)}
 .fab{pointer-events:none}
 .fb{pointer-events:auto}
-.menu{display:flex;flex-direction:column;align-items:flex-end;gap:10px;opacity:0;transform:translateY(14px) scale(.9);transform-origin:bottom right;pointer-events:none;transition:.28s}
-.fab.open .menu{opacity:1;transform:none;pointer-events:auto}
+.menu{display:flex;flex-direction:column;align-items:flex-end;gap:10px;opacity:0;visibility:hidden;transform:translateY(12px) scale(.94);transform-origin:bottom right;pointer-events:none;transition:opacity .2s ease,transform .26s cubic-bezier(.2,.9,.3,1),visibility 0s linear .26s}
+.fab.open .menu{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition-delay:0s}
 .menu a{display:flex;align-items:center;gap:10px;padding:6px 6px 6px 16px;border-radius:99px;background:#fff;border:1px solid var(--bd);box-shadow:0 8px 20px rgba(20,40,90,.15);font-size:13px;font-weight:600}
 .menu a span{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:19px;color:#fff}
-.fb{position:relative;width:60px;height:60px;border:0;border-radius:50%;background:var(--g);color:#fff;font-size:26px;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 0 6px rgba(37,99,235,.18),0 0 0 14px rgba(37,99,235,.08),0 14px 26px -8px rgba(37,99,235,.8)}
-.fb .x,.fab.open .fb .h{display:none}
-.fab.open .fb .x{display:block}
+.fb{position:relative;width:60px;height:60px;border:0;border-radius:50%;background:var(--g);color:#fff;font-size:26px;display:block;cursor:pointer;box-shadow:0 0 0 6px rgba(37,99,235,.18),0 0 0 14px rgba(37,99,235,.08),0 14px 26px -8px rgba(37,99,235,.8);transition:transform .15s ease}
+.fb svg{position:absolute;left:50%;top:50%;margin:-13px 0 0 -13px;width:26px;height:26px;transition:opacity .2s ease,transform .28s cubic-bezier(.2,.9,.3,1)}
+.fb .h{opacity:1;transform:none}
+.fb .x{opacity:0;transform:rotate(-90deg) scale(.5)}
+.fab.open .fb .h{opacity:0;transform:rotate(90deg) scale(.5)}
+.fab.open .fb .x{opacity:1;transform:none}
 
 /* bottom nav */
-.nav{position:fixed;left:50%;transform:translateX(-50%) translateZ(0);-webkit-transform:translateX(-50%) translateZ(0);bottom:calc(6px + env(safe-area-inset-bottom,0px));width:min(calc(100% - 20px),520px);height:68px;z-index:45;display:grid;grid-template-columns:repeat(5,1fr);border-radius:24px;background:rgba(255,255,255,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--bd);box-shadow:0 10px 28px rgba(20,40,100,.16);backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform}
+.nav{position:fixed;left:50%;transform:translateX(-50%) translateZ(0);-webkit-transform:translateX(-50%) translateZ(0);bottom:calc(6px + env(safe-area-inset-bottom,0px));width:min(calc(100% - 20px),520px);height:68px;z-index:45;display:grid;grid-template-columns:repeat(5,1fr);border-radius:24px;background:rgba(255,255,255,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--bd);box-shadow:0 10px 28px rgba(20,40,100,.16);backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--mu);font-size:10.5px;font-weight:600;position:relative;transition:.2s}
 .nav a svg{font-size:23px}
 .nav a.on{color:var(--v)}
@@ -247,7 +247,7 @@ footer h2{margin:30px 0 12px;font-size:26px;font-weight:800;letter-spacing:-.6px
 .reset-step{font-size:10px;font-weight:900;letter-spacing:2.4px;color:#6481b8;margin-bottom:6px}.reset-heading{margin:0;color:#14213d;font-size:24px;font-weight:900;animation:resetTextIn .4s ease both}
 .reset-sub,.reset-stage-note{color:#71809b;font-size:12px;line-height:1.75;margin:8px 0 18px}.reset-progress{height:4px;border-radius:9px;background:#e5ecf8;overflow:hidden;margin-bottom:20px}.reset-progress i{display:block;width:33.333%;height:100%;background:linear-gradient(90deg,#3b82f6,#8b5cf6);transition:width .35s}
 .reset-main-btn{width:100%;margin-top:16px;min-height:49px;border-radius:15px!important;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 9px 22px #2563eb2e;transition:transform .18s,box-shadow .18s}.reset-main-btn span{font-size:19px;transition:transform .2s}.reset-main-btn:active{transform:scale(.97);box-shadow:0 4px 10px #2563eb29}.reset-main-btn:active span{transform:translateX(3px)}
-.reset-stage{animation:resetStageIn .32s ease both}.reset-pass-label{display:block;margin-top:13px}.reset-message{min-height:18px;margin:12px 0 0;font-size:12px;line-height:1.6;color:#b42318}.reset-back{display:block;margin:6px auto 0;border:0;background:transparent;color:#5474b6;font-weight:700;font-size:12px;padding:8px;cursor:pointer}
+.reset-stage{animation:resetStageIn .32s ease both}.reset-reopen{animation:resetPop .36s cubic-bezier(.2,.9,.25,1.15) both}.reset-pass-label{display:block;margin-top:13px}.reset-message{min-height:18px;margin:12px 0 0;font-size:12px;line-height:1.6;color:#b42318}.reset-back{display:block;margin:6px auto 0;border:0;background:transparent;color:#5474b6;font-weight:700;font-size:12px;padding:8px;cursor:pointer}
 .otp-deck{position:relative;margin:14px 0 4px}.otp-slots{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}.otp-slots span{height:52px;display:grid;place-items:center;border-radius:13px;border:1px solid #d6e2f7;background:linear-gradient(#fff,#f2f6ff);color:#172554;font-size:23px;font-weight:800;box-shadow:0 5px 14px #1f418c12;transition:all .2s}.otp-deck:focus-within .otp-slots span{border-color:#6b9aff;box-shadow:0 0 0 3px #3b82f61a}.otp-code-input{position:absolute;inset:0;width:100%;height:52px;opacity:.015;cursor:text;border:0!important;background:transparent!important;color:transparent!important;caret-color:transparent!important;z-index:2}.otp-slots span.filled{border-color:#8ab2ff;background:linear-gradient(#eef5ff,#e2edff);transform:translateY(-2px)}
 @keyframes resetFade{from{opacity:0}to{opacity:1}}@keyframes resetPop{from{opacity:0;transform:translateY(20px) scale(.94)}to{opacity:1;transform:none}}@keyframes resetStageIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}@keyframes resetTextIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}@keyframes resetFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 @media(max-width:420px){.reset-card{padding:27px 18px 20px;border-radius:24px}.otp-slots{gap:6px}.otp-slots span,.otp-code-input{height:47px}}
@@ -263,13 +263,56 @@ footer h2{margin:30px 0 12px;font-size:26px;font-weight:800;letter-spacing:-.6px
 #otpResetBox{animation:otpIn .32s cubic-bezier(.2,.8,.2,1)}
 @keyframes otpIn{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
 @keyframes premiumRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.pv-box,.li,.help,.warn{animation:premiumRise .38s ease both}
-.acc-panel,.menu,.fb,.nav a,.btn{transition:transform .22s ease,opacity .22s ease,box-shadow .22s ease}
+#pgView,#catView{animation:pgEnter .26s ease both}
+#pgBody.swap{animation:pgEnter .26s ease both}
+@keyframes pgEnter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.nav a,.btn{transition:transform .2s ease,opacity .2s ease,box-shadow .2s ease}
 .fb:active{transform:scale(.94)}
 .menu a:active{transform:scale(.98)}
 @media(max-width:420px){.otp-slots{gap:6px}.otp-slots span{height:49px;border-radius:11px;font-size:21px}.otp-code-input{height:49px}}
 @media(prefers-reduced-motion:reduce){.otp-slots span,.otp-deck,#otpResetBox,.pv-box,.li,.help,.warn,.acc-panel,.menu,.fb,.nav a,.btn{animation:none!important;transition:none!important}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== mobile stability / modal / add-money polish ===== */
+html{font-size:16px;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+body{overscroll-behavior-x:none;}
+button,a,input,textarea,select{-webkit-tap-highlight-color:transparent;}
+#pgView.hpay-page{width:100%;max-width:500px;margin:0 auto;padding-left:0;padding-right:0;box-sizing:border-box;}
+.hpay-wrap{width:100%;max-width:500px;margin:0 auto!important;border-radius:0;box-sizing:border-box;overflow-x:hidden;}
+.hpay-screen{width:100%;max-width:500px;margin:0 auto;box-sizing:border-box;padding-left:14px;padding-right:14px;}
+.hpay-primary,.hpay-verify{min-width:0;box-sizing:border-box;transform:none!important;}
+.hpay-primary:active,.hpay-verify:active{transform:scale(.985)!important;}
+.hpay-methods{grid-template-columns:repeat(2,minmax(0,1fr));}
+.hpay-method{min-width:0;width:100%;box-sizing:border-box;}
+.hpay-pay-line{align-items:center;}
+.hpay-copy{border:0;background:#e8f0ff;color:#2563eb;border-radius:9px;padding:7px 9px;font-weight:800;font-size:11px;font-family:inherit;white-space:nowrap;cursor:pointer;flex:none;}
+.hpay-copy:active{transform:scale(.95);}
+.hpay-number-row{display:flex;align-items:center;justify-content:flex-end;gap:7px;min-width:0;}
+.hpay-number-row .hpay-number{overflow-wrap:anywhere;}
+.hpay-modal-lock{overflow:hidden!important;}
+.am{align-items:center!important;justify-content:center!important;overflow:auto!important;overscroll-behavior:contain;}
+.am-box{width:min(calc(100vw - 24px),420px);max-height:min(88svh,620px);margin:0!important;box-sizing:border-box;transform:translateY(12px) scale(.985);}
+.am.show .am-box{transform:translateY(0) scale(1);}
+.am-x{right:10px;top:10px;z-index:20;pointer-events:auto;touch-action:manipulation;}
+.reset-modal{align-items:center;justify-content:center;padding:12px;overflow:auto;overscroll-behavior:contain;}
+.reset-card{width:min(calc(100vw - 24px),420px);max-height:min(88svh,700px);box-sizing:border-box;margin:auto;}
+.reset-close{right:10px;top:10px;z-index:30;pointer-events:auto;touch-action:manipulation;}
+/* Keyboard-safe modal layout: keep the active input and close button inside the visible viewport. */
+@media(max-width:520px){
+  .am{padding:10px 12px;}
+  .am-box{max-height:calc(100svh - 20px);}
+  .reset-modal{padding:10px 12px;}
+  .reset-card{max-height:calc(100svh - 20px);padding:25px 17px 18px;}
+  .reset-close{width:34px;height:34px;font-size:22px;}
+  .hpay-screen{padding-left:12px;padding-right:12px;}
+  .hpay-balance{border-radius:20px;}
+  .hpay-card{border-radius:20px;padding:16px 12px;}
+  .hpay-methods{gap:8px;}
+  .hpay-method{min-height:104px;padding:10px 7px;border-radius:15px;}
+  .hpay-pay-line{padding:12px 11px;font-size:12px;}
+  .hpay-form,.hpay-instructions{padding:12px;border-radius:16px;}
+}
+
 
 /* bottom area v2 */
 .dl{position:relative;overflow:hidden;margin-top:24px;padding:30px 20px 32px;border-radius:28px;text-align:center;background:linear-gradient(135deg,#3b82f6,#1d4ed8 55%,#1e3a8a);border:0;box-shadow:0 22px 44px -22px rgba(29,78,216,.8)}
@@ -556,32 +599,7 @@ html,body,.pk,.po,.btn,.pay,.q,.card,.nav a,.pv-back{touch-action:manipulation}
 #luView .pk:active{transform:none;background:#eff5ff}
 #luView .pk{-webkit-appearance:none;appearance:none;font-family:inherit}
 
-/* ===== account menu panel ===== */
-.acc{position:fixed;inset:0;z-index:44;background:rgba(10,22,55,.5);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
-.acc.show{opacity:1;visibility:visible;transition:opacity .3s,visibility 0s}
-.acc-in{position:absolute;top:0;right:0;bottom:0;width:64%;max-width:340px;display:flex;flex-direction:column;background:#fff;box-shadow:-12px 0 36px -10px rgba(10,22,55,.35);transform:translateX(100%);transition:transform .38s cubic-bezier(.2,1,.3,1);overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
-.acc.show .acc-in{transform:none}
-.acc-top{position:relative;display:flex;flex-direction:column;align-items:center;padding:calc(14px + env(safe-area-inset-top,0px)) 12px 14px;background:#fff;border-bottom:1px solid var(--bd)}
-.acc-x{display:none}
-.acc-user{display:flex;align-items:center;gap:10px;width:100%}
-.acc-av{width:52px;height:52px;border-radius:14px;padding:2.5px;background:var(--g);box-shadow:0 6px 14px -6px rgba(37,99,235,.6);flex-shrink:0}
-.acc-av div{width:100%;height:100%;border-radius:11.5px;overflow:hidden;background:#eff6ff;display:grid;place-items:center;color:var(--v);font-size:24px}
-.acc-av img{width:100%;height:100%;object-fit:cover;display:block}
-.acc-nm{min-width:0;flex:1}
-.acc-nm b{display:block;font-size:15px;font-weight:800;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.acc-nm span{display:block;margin-top:2px;font-size:12px;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.acc-lo{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:8px 18px;border:0;border-radius:10px;background:var(--g);color:#fff;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;box-shadow:0 8px 18px -8px rgba(37,99,235,.85);transition:.2s}
-.acc-lo:active{transform:scale(.97)}
-.acc-lo svg{font-size:16px;stroke-width:2.2}
-.acc-list{background:#fff;border-bottom:1px solid var(--bd)}
-.acc-it{display:flex;align-items:center;gap:13px;padding:14px 14px;font-size:14.5px;font-weight:700;color:var(--tx);transition:.15s}
-.acc-it svg{font-size:22px;color:#1e293b;flex-shrink:0}
-.acc-it:active{background:#eff5ff}
-.acc-it.on{color:var(--v)}
-.acc-it.on svg{color:var(--v)}
-.acc-sup{display:flex;align-items:center;justify-content:center;gap:8px;margin:14px auto 0;padding:11px 26px;border-radius:12px;background:var(--g);color:#fff;font-size:14.5px;font-weight:700;box-shadow:0 10px 20px -10px rgba(37,99,235,.8)}
-.acc-sup svg{font-size:19px}
-.acc-sup:active{transform:scale(.97)}
+
 /* INDONESIA SERVER: compact, centered price cards */
 #inPkGrid{gap:8px;margin:-3px}
 #inView .pk{min-height:64px;padding:8px 6px;gap:3px;justify-content:center;border-radius:12px;border-width:1.5px;box-shadow:0 2px 6px -4px rgba(20,40,90,.25)}
@@ -593,32 +611,7 @@ html,body,.pk,.po,.btn,.pay,.q,.card,.nav a,.pv-back{touch-action:manipulation}
 #inView .pk:active{transform:none;background:#eff5ff}
 #inView .pk{-webkit-appearance:none;appearance:none;font-family:inherit}
 
-/* ===== account menu panel ===== */
-.acc{position:fixed;inset:0;z-index:44;background:rgba(10,22,55,.5);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
-.acc.show{opacity:1;visibility:visible;transition:opacity .3s,visibility 0s}
-.acc-in{position:absolute;top:0;right:0;bottom:0;width:64%;max-width:340px;display:flex;flex-direction:column;background:#fff;box-shadow:-12px 0 36px -10px rgba(10,22,55,.35);transform:translateX(100%);transition:transform .38s cubic-bezier(.2,1,.3,1);overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
-.acc.show .acc-in{transform:none}
-.acc-top{position:relative;display:flex;flex-direction:column;align-items:center;padding:calc(14px + env(safe-area-inset-top,0px)) 12px 14px;background:#fff;border-bottom:1px solid var(--bd)}
-.acc-x{display:none}
-.acc-user{display:flex;align-items:center;gap:10px;width:100%}
-.acc-av{width:52px;height:52px;border-radius:14px;padding:2.5px;background:var(--g);box-shadow:0 6px 14px -6px rgba(37,99,235,.6);flex-shrink:0}
-.acc-av div{width:100%;height:100%;border-radius:11.5px;overflow:hidden;background:#eff6ff;display:grid;place-items:center;color:var(--v);font-size:24px}
-.acc-av img{width:100%;height:100%;object-fit:cover;display:block}
-.acc-nm{min-width:0;flex:1}
-.acc-nm b{display:block;font-size:15px;font-weight:800;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.acc-nm span{display:block;margin-top:2px;font-size:12px;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.acc-lo{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:8px 18px;border:0;border-radius:10px;background:var(--g);color:#fff;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;box-shadow:0 8px 18px -8px rgba(37,99,235,.85);transition:.2s}
-.acc-lo:active{transform:scale(.97)}
-.acc-lo svg{font-size:16px;stroke-width:2.2}
-.acc-list{background:#fff;border-bottom:1px solid var(--bd)}
-.acc-it{display:flex;align-items:center;gap:13px;padding:14px 14px;font-size:14.5px;font-weight:700;color:var(--tx);transition:.15s}
-.acc-it svg{font-size:22px;color:#1e293b;flex-shrink:0}
-.acc-it:active{background:#eff5ff}
-.acc-it.on{color:var(--v)}
-.acc-it.on svg{color:var(--v)}
-.acc-sup{display:flex;align-items:center;justify-content:center;gap:8px;margin:14px auto 0;padding:11px 26px;border-radius:12px;background:var(--g);color:#fff;font-size:14.5px;font-weight:700;box-shadow:0 10px 20px -10px rgba(37,99,235,.8)}
-.acc-sup svg{font-size:19px}
-.acc-sup:active{transform:scale(.97)}
+
 /* ===== Firebase additions ===== */
 .am{position:fixed;inset:0;z-index:130;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(10,22,55,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s}
 .am.show{opacity:1;pointer-events:auto}
@@ -728,8 +721,225 @@ html,body,.pk,.po,.btn,.pay,.q,.card,.nav a,.pv-back{touch-action:manipulation}
 .reset-back{transition:transform .2s,opacity .2s}.reset-back:active{transform:translateX(-4px)}
 @media(prefers-reduced-motion:reduce){.rx-orb,.reset-icon:before,.reset-icon:after,.reset-progress i,.reset-main-btn:after,.rx-confetti b,.otp-slots span.cur{animation:none!important}}
 </style>
+<style id="touchFx">
+.btn:active,.pk:active,.pay:active,.po:active,.cp:active,.wallet:active,.am-tabs button:active,.reset-close:active{transform:scale(.97)}
+#pgView.hpay-page .btn,#pgView.hpay-page button{max-width:100%;box-sizing:border-box;}
+.nav a:active{transform:scale(.92)}
+.card:active{box-shadow:0 2px 8px rgba(37,99,235,.2)}
+a.card,.pk,.pay,.po,.btn,.acc-it,.nav a,.fb,.avatar,.wallet{-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.fb,.avatar,.nav a{outline:none}
+html.no-scroll,html.no-scroll body{overflow:hidden}
+html{scrollbar-gutter:stable}
+</style>
+<style id="hasiSmooth">
+/* lighter reset modal (no endless blur/shine loops) + phone/OTP input */
+.rx-o1,.rx-o2{animation:none}
+.reset-icon:before,.reset-icon:after,.reset-main-btn:after{display:none}
+.reset-icon{animation:none}
+.reset-card .reset-heading{font-size:21px;margin:0 36px 0 0}
+.reset-contact{font-size:17px;letter-spacing:.3px}
+.rx-alt{display:block;margin:12px auto 0;border:0;background:transparent;color:#2563eb;font-weight:800;font-size:12.5px;padding:8px 10px;cursor:pointer;border-radius:10px}
+.rx-alt:active{background:#e8f0ff}
+.rx-hint{margin:10px 2px 0;font-size:11.5px;line-height:1.7;color:#71809b}
+</style>
+
+<style id="hasi-premium-motion-v3">
+/* ===== Hasi premium motion + touch system ===== */
+:root{--hpay-red:#2563eb;--hpay-red2:#3b82f6;--hpay-blue:#2563eb}
+html{scroll-behavior:smooth}
+body{overscroll-behavior-x:none}
+button,a,.card,.pk,.po,.q,.nav a,.pay,.fb,.acc-it,.hpay-method{touch-action:manipulation}
+.inp,input,textarea,select{font-size:16px!important}
+.page-enter{animation:hPageIn .38s cubic-bezier(.2,.8,.2,1) both}
+@keyframes hPageIn{from{opacity:0;transform:translateY(14px) scale(.992);filter:blur(2px)}to{opacity:1;transform:none;filter:none}}
+.hasi-touch-ripple{position:relative;overflow:hidden}
+/* ripple কখনো এই বাটনগুলোর position/overflow বদলাতে পারবে না */
+.nav a,.nav a.add,.nav a.hasi-touch-ripple{overflow:visible!important}
+.nav a.hasi-touch-ripple{position:relative!important}
+.am-x,.am-x.hasi-touch-ripple{position:absolute!important;top:10px!important;right:10px!important;left:auto!important;float:none!important;margin:0!important;overflow:visible!important}
+.pclose,.pclose.hasi-touch-ripple{position:absolute!important;overflow:visible!important}
+.reset-close,.reset-close.hasi-touch-ripple{position:absolute!important;top:10px!important;right:10px!important;left:auto!important;float:none!important;margin:0!important;overflow:visible!important}
+.fb,.fb.hasi-touch-ripple{position:relative!important;overflow:visible!important}
+.hasi-touch-ripple:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.42);transform:scale(0);opacity:0;pointer-events:none;left:var(--rx,50%);top:var(--ry,50%);animation:hRipple .46s ease-out}
+@keyframes hRipple{0%{transform:translate(-50%,-50%) scale(0);opacity:.8}100%{transform:translate(-50%,-50%) scale(8);opacity:0}}
+#hasiLoader{position:fixed;inset:0;z-index:20000;display:flex;align-items:center;justify-content:center;background:rgba(245,248,255,.78);backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s}
+#hasiLoader.show{opacity:1;visibility:visible}
+.h-loader-card{width:112px;height:112px;border-radius:28px;background:#fff;border:1px solid #e1e8f5;box-shadow:0 20px 60px rgba(20,40,90,.2);display:grid;place-items:center}
+.h-loader-ring{width:44px;height:44px;border-radius:50%;border:4px solid #dbe7ff;border-top-color:#2563eb;animation:hSpin .72s linear infinite}
+@keyframes hSpin{to{transform:rotate(360deg)}}
+#hasiSuccess{position:fixed;inset:0;z-index:20010;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(5,13,36,.52);backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:.22s}
+#hasiSuccess.show{opacity:1;visibility:visible}
+.h-success-card{width:min(92vw,360px);padding:30px 22px;border-radius:26px;background:#fff;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.35);animation:hSuccessPop .42s cubic-bezier(.2,.9,.25,1.15)}
+@keyframes hSuccessPop{from{opacity:0;transform:translateY(20px) scale(.9)}to{opacity:1;transform:none}}
+.h-success-icon{width:68px;height:68px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-size:34px;box-shadow:0 14px 28px rgba(5,150,105,.28);animation:hSuccessPulse 1.2s ease}
+@keyframes hSuccessPulse{0%{transform:scale(.6)}65%{transform:scale(1.08)}100%{transform:scale(1)}}
+.h-success-card h3{font-size:21px;color:#0f172a}.h-success-card p{margin-top:6px;color:#64748b;font-size:13px}
+
+/* Support blink */
+.fb.support-blink{animation:hSupportBlink .72s ease 2}
+@keyframes hSupportBlink{0%,100%{transform:scale(1);filter:brightness(1)}35%{transform:scale(1.12);filter:brightness(1.35);box-shadow:0 0 0 8px rgba(37,99,235,.2),0 0 35px rgba(37,99,235,.65)}70%{transform:scale(.96);filter:brightness(1.1)}}
+
+/* ===== Add Money: 3 separate screens / popups ===== */
+#pgView.hpay-page{padding:0 0 120px;max-width:560px}
+.hpay-wrap{min-height:calc(100dvh - 90px);margin:-2px -16px 0;background:transparent;overflow:hidden}
+.hpay-screen{min-height:calc(100dvh - 90px);padding:12px 16px 34px;animation:hPayIn .38s cubic-bezier(.2,.9,.25,1) both}
+@keyframes hPayIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+.hpay-top{display:flex;align-items:center;gap:12px;padding:6px 0 16px}
+.hpay-top small{display:block;color:#8b95a7;font-size:11px}.hpay-top b{display:block;font-size:19px;color:#172033}
+.hpay-back{width:40px;height:40px;border:0;border-radius:13px;background:#fff;color:#172033;font-size:29px;line-height:1;box-shadow:0 5px 18px rgba(20,40,90,.08)}
+.hpay-balance{display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-radius:25px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;box-shadow:0 18px 36px -18px rgba(37,99,235,.65);margin-bottom:16px}
+.hpay-balance small{display:block;font-size:12px;font-weight:700;opacity:.92}.hpay-balance strong{display:block;margin-top:5px;font-size:34px;letter-spacing:-1px}.hpay-wallet{width:52px;height:52px;border-radius:17px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:25px}
+.hpay-card{background:#fff;border-radius:26px;padding:18px 14px;box-shadow:0 8px 30px rgba(20,40,90,.07);border:1px solid #edf0f5}
+.hpay-card-title{display:flex;justify-content:space-between;align-items:center;margin:0 4px 12px}.hpay-card-title b{font-size:15px;color:#97a1b1}.hpay-card-title span{font-size:11px;padding:7px 9px;border-radius:7px;background:#e8f0ff;color:#2563eb;font-weight:800}
+.hpay-amount-display{height:62px;border-bottom:1px solid #e8edf4;display:flex;align-items:center;gap:8px;padding:0 5px;color:#9ba6b7;font-size:26px;font-weight:800}.hpay-amount-display input{border:0;outline:0;width:100%;height:100%;font-size:32px!important;font-weight:800;color:#0f172a;background:transparent}
+.hpay-amount-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.hpay-amount-grid button{height:50px;border:1.5px solid #d3d8e0;border-radius:13px;background:#f8f9fb;color:#4f5b6e;font-weight:700;font-size:15px;font-family:inherit;transition:.18s}.hpay-amount-grid button:active{transform:scale(.95)}.hpay-amount-grid button.on{border-color:#2563eb;background:#e8f0ff;color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.08)}
+.hpay-primary,.hpay-verify{width:100%;height:52px;margin-top:14px;border:0;border-radius:14px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;font-weight:800;font-size:15px;font-family:inherit;box-shadow:0 12px 22px -12px rgba(37,99,235,.7);display:flex;align-items:center;justify-content:center;gap:9px}.hpay-primary:active,.hpay-verify:active{transform:scale(.98)}.hpay-primary:disabled{opacity:.55}
+.hpay-hint{text-align:center;color:#9aa4b4;font-size:11px;margin:14px 0}
+.hpay-brand{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 0 20px}.hpay-brand strong{display:block;font-size:23px;color:#4f5f76}.hpay-brand small{display:block;color:#9aa4b4;font-size:11px;margin-top:2px}
+.hpay-logo{width:82px;height:82px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#1d4ed8);display:grid;place-items:center;box-shadow:0 10px 28px rgba(37,99,235,.25);border:3px solid #fff}.hpay-logo span{font-size:46px;font-weight:950;color:#fff;font-family:Arial,sans-serif}
+.hpay-pay-title{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;border-radius:12px;padding:14px;text-align:center;font-size:14px;font-weight:800;margin-bottom:14px}
+.hpay-methods{display:grid;grid-template-columns:1fr 1fr;gap:11px}.hpay-method{position:relative;min-height:118px;border:1px solid #e0e5ed;border-radius:18px;background:#fff;padding:13px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;text-align:center;box-shadow:0 7px 20px rgba(20,40,90,.06);font:inherit;color:#172033;transition:.2s}.hpay-method.on{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12),0 12px 24px -14px rgba(37,99,235,.45)}.hpay-method>i{position:absolute;right:9px;top:8px;font-style:normal;font-size:23px;color:#a0a9b8}.hpay-method.on>i{color:#2563eb}.hpay-method-logo{width:48px;height:38px;border-radius:9px;display:grid;place-items:center;font-size:21px;font-weight:950;background:#e8f0ff;color:#2563eb}.hpay-method-logo.nagad{color:#2563eb;background:#e8f0ff}.hpay-method-logo.rocket{color:#2563eb;background:#e8f0ff}.hpay-method b{font-size:14px}.hpay-method small{display:block;color:#9aa4b4;font-size:9px;margin-top:2px}
+.hpay-total{display:flex;justify-content:space-between;align-items:center;margin-top:15px;padding:15px;border-radius:15px;background:#fff;border:1px dashed #cbd5e1;color:#697588;font-size:13px}.hpay-total b{font-size:19px;color:#2563eb}
+.hpay-pay-box{background:#fff;border-radius:20px;border:1px solid #e6ebf2;overflow:hidden;box-shadow:0 8px 24px rgba(20,40,90,.06)}.hpay-pay-line{display:flex;justify-content:space-between;gap:12px;padding:15px;border-bottom:1px solid #edf0f5;font-size:13px}.hpay-pay-line:last-child{border-bottom:0}.hpay-pay-line span{color:#7b8799}.hpay-pay-line b{color:#1b2638;text-align:right}.hpay-number{color:#2563eb!important;font-size:16px}
+.hpay-instructions{margin-top:12px;background:#fff;border-radius:18px;padding:15px;color:#39465a;font-size:12px;line-height:1.75}.hpay-instructions ol{padding-left:20px;margin-top:5px}
+.hpay-form{margin-top:12px;background:#fff;border-radius:20px;padding:15px;border:1px solid #e6ebf2}.hpay-form label{display:block;font-size:12px;font-weight:800;color:#64748b;margin:0 0 6px}.hpay-form .inp{margin-bottom:11px;height:48px;border-color:#d7dee9}.hpay-verify{background:#2563eb}.hpay-err{min-height:17px;margin:8px 2px 0;color:#c62828;font-size:11px;font-weight:700}
+.hpay-steps{display:flex;justify-content:center;gap:7px;margin-top:17px}.hpay-steps i{width:24px;height:4px;border-radius:8px;background:#dce2eb}.hpay-steps i.on{background:#2563eb}.hpay-empty{padding:18px;background:#fff;border-radius:16px;text-align:center;color:#9aa4b4;font-size:13px}
+.hpay-touch{animation:hPayTouch .35s ease}.hpay-spin{display:inline-block;animation:hSpin .65s linear infinite;font-size:18px}
+@keyframes hPayTouch{0%{transform:scale(1)}45%{transform:scale(.96)}100%{transform:scale(1)}}
+@media(max-width:420px){.hpay-wrap{margin-left:-10px;margin-right:-10px}.hpay-screen{padding-left:10px;padding-right:10px}.hpay-balance{padding:19px 16px}.hpay-balance strong{font-size:31px}.hpay-amount-grid{gap:8px}.hpay-amount-grid button{height:48px}}
+@media(prefers-reduced-motion:reduce){.page-enter,.hpay-screen,.h-success-card,.h-success-icon,.support-blink,.hasi-touch-ripple:after{animation:none!important}}
+</style>
+
+
+<style id="hasi-auth-keyboard-fix">
+.am{padding:12px 12px calc(18px + env(safe-area-inset-bottom));align-items:center;overflow:auto}
+.am-box{max-height:calc(100dvh - 24px);overflow:auto;-webkit-overflow-scrolling:touch}
+.am-box input{min-height:48px;font-size:16px!important}
+@media(max-width:520px){.am{align-items:flex-start;padding-top:max(14px,env(safe-area-inset-top));padding-bottom:calc(14px + env(safe-area-inset-bottom))}.am-box{margin-top:4vh;width:min(100%,430px)}}
+</style>
+
+
+<style id="keyboard-smooth-v4">
+/* Modal সবসময় মাঝখানে। Keyboard খুললে container নিজে scroll করে — card কখনো ভাঙে/সংকুচিত হয় না */
+.am,.reset-modal{inset:auto!important;left:0!important;right:0!important;top:var(--vvt,0px)!important;height:var(--baseh,100dvh)!important;display:flex;align-items:flex-start!important;justify-content:center!important;overflow-x:hidden!important;overflow-y:auto!important;padding:12px!important;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.am-box,.reset-card{margin:auto!important;max-height:none!important;flex:none;width:min(calc(100% - 4px),420px)!important;box-sizing:border-box}
+.am-box{overflow:visible!important}
+.reset-card{overflow:hidden!important}
+.reset-shade{position:fixed!important;inset:0!important}
+.am::after,.reset-modal::after{content:"";position:absolute;left:0;top:0;width:1px;height:calc(100% + var(--kb,0px));visibility:hidden;pointer-events:none}
+.reset-modal{padding-top:28px!important}
+.reset-modal .reset-card{margin:0 auto!important}
+@media(max-width:600px){
+  .reset-shade,.am{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .reset-shade{background:rgba(7,16,38,.74)}
+  .am{background:rgba(10,22,55,.68)}
+}
+.rx-orb{filter:blur(22px)}
+
+/* Deposit সফল popup */
+.dep-ok{text-align:center;padding:4px 2px 2px}
+.dep-ok .dep-ic{width:84px;height:84px;margin:6px auto 10px;display:block}
+.dep-ok .dep-ic .dc{fill:#ecfdf3;stroke:#22c55e;stroke-width:2.5;stroke-dasharray:152;stroke-dashoffset:152;animation:rxDraw .7s ease forwards}
+.dep-ok .dep-ic .dp{fill:none;stroke:#16a34a;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:rxDraw .45s .55s ease forwards}
+.dep-ok h3{margin:0 0 6px!important;font-size:19px;animation:rxTextIn .45s .2s ease both}
+.dep-ok .dep-sub{font-size:12.5px;color:var(--mu);line-height:1.75;margin:0 4px 14px;animation:rxTextIn .45s .35s ease both}
+.dep-rows{text-align:left;border:1px solid var(--bd);border-radius:16px;background:#f7faff;overflow:hidden;margin-bottom:6px;animation:rxTextIn .45s .45s ease both}
+.dep-rows div{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #e6edf8;font-size:13px}
+.dep-rows div:last-child{border-bottom:0}
+.dep-rows span{color:var(--mu)}
+.dep-rows b{font-weight:800;text-align:right;word-break:break-all}
+.dep-rows .big2{color:#067647;font-size:17px}
+.dep-ok .am-row{animation:rxTextIn .45s .55s ease both}
+</style>
+<style id="mobile-final-fixes">
+html{touch-action:pan-x pan-y; -webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overflow-x:hidden}
+@media(max-width:600px){
+  .wrap{padding-left:12px;padding-right:12px}
+  #pgView.hpay-page{width:100%;max-width:500px;margin:0 auto;padding-left:8px;padding-right:8px}
+  #pgView.hpay-page .hpay-wrap{width:100%;max-width:100%;margin:0 auto!important;border-radius:18px;overflow:hidden}
+  #pgView.hpay-page .hpay-screen{padding-left:12px;padding-right:12px}
+  #pgView.hpay-page .hpay-card{padding:14px 11px}
+  #pgView.hpay-page .hpay-primary,#pgView.hpay-page .hpay-verify{width:100%;max-width:100%;min-width:0;margin-left:0;margin-right:0;flex:0 0 100%;transform:none}
+  #pgView.hpay-page .hpay-primary:active,#pgView.hpay-page .hpay-verify:active{transform:scale(.99)}
+  #pgView.hpay-page .hpay-pay-line{gap:8px;padding:12px 10px}
+  #pgView.hpay-page .hpay-number-row{max-width:68%;gap:5px}
+  #pgView.hpay-page .hpay-number{font-size:clamp(11px,3.4vw,15px);overflow-wrap:anywhere}
+  #pgView.hpay-page .hpay-copy{padding:7px 8px;font-size:11px}
+  .reset-modal{padding:12px;align-items:center;justify-content:center}
+  .reset-card{width:min(100%,420px);max-height:var(--vvh,88dvh);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;margin:auto;transform:none}
+  .reset-modal.keyboard-open{align-items:flex-start;padding-top:8px}
+  .reset-modal.keyboard-open .reset-card{max-height:var(--vvh,70dvh)}
+  .am{align-items:center;justify-content:center}
+  .am-box{width:min(calc(100vw - 24px),420px);max-height:var(--vvh,90dvh);overflow-y:auto;margin:auto}
+  .pop{padding:14px;align-items:center;justify-content:center}
+  .pbox{margin:auto}
+}
+</style>
+
+<style id="hasi-splash-css">
+/* ===== Page loading splash (H logo) ===== */
+#hasiSplash{position:fixed;inset:0;z-index:20050;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:22px;background:linear-gradient(160deg,#ffffff 0%,#eef4ff 55%,#dbe8ff 100%);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility 0s linear .25s}
+#hasiSplash.show{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .05s ease,visibility 0s}
+.hs-wrap{position:relative;width:124px;height:124px;display:grid;place-items:center}
+.hs-ring{position:absolute;inset:0;border-radius:50%;border:4px solid #dbe7ff;border-top-color:#2563eb;border-right-color:#60a5fa;animation:hSpin .9s linear infinite}
+.hs-pulse{position:absolute;inset:10px;border-radius:50%;background:rgba(37,99,235,.14);animation:hsPulse 1.6s ease-in-out infinite}
+.hs-logo{position:relative;width:86px;height:86px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;font-size:46px;font-weight:900;font-family:Arial,sans-serif;box-shadow:0 14px 30px -10px rgba(37,99,235,.65);border:3px solid #fff;animation:hsLogoIn .5s cubic-bezier(.2,.9,.25,1.2) both}
+.hs-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff}
+.hs-dots{display:flex;gap:7px}
+.hs-dots i{width:8px;height:8px;border-radius:50%;background:#2563eb;animation:hsDot 1s ease-in-out infinite}
+.hs-dots i:nth-child(2){animation-delay:.15s}.hs-dots i:nth-child(3){animation-delay:.3s}
+@keyframes hsPulse{0%,100%{transform:scale(.9);opacity:.55}50%{transform:scale(1.08);opacity:1}}
+@keyframes hsLogoIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes hsDot{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-6px);opacity:1}}
+/* admin থেকে দেওয়া লোগো */
+.hpay-method-logo img{width:100%;height:100%;object-fit:contain;display:block;border-radius:inherit}
+.hpay-method-logo.has{width:66px;height:46px;background:#fff!important;border:1px solid #e6ecf7;padding:3px;box-sizing:border-box}
+.hpay-logo.has{background:#fff;overflow:hidden}
+.hpay-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+.hpay-pay-line .mini-logo{width:24px;height:24px;object-fit:contain;vertical-align:middle;margin-right:6px;border-radius:6px}
+</style>
+<style id="no-black-flash">
+/* keyboard ওঠা-নামার সময় কালো/সাদা ঝলক বন্ধ: ভারী GPU layer (blur, বড় shadow, will-change) সরানো */
+html,body{background:#f5f8ff}
+body::before{will-change:auto!important;-webkit-transform:none!important;transform:none!important}
+.rx-orb{display:none!important}
+.reset-card{
+  background:radial-gradient(circle at 100% 0,#cfdcff 0,rgba(207,220,255,0) 42%),radial-gradient(circle at 0 100%,#e6dcff 0,rgba(230,220,255,0) 42%),linear-gradient(160deg,#ffffff,#f3f7ff)!important;
+  box-shadow:0 8px 24px rgba(7,16,38,.28)!important;animation:none!important;will-change:auto!important;isolation:auto!important}
+.reset-shade{animation:none!important;background:rgba(7,16,38,.62)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.reset-icon,.reset-icon:before,.reset-icon:after{animation:none!important;filter:none!important}
+.reset-progress i{animation:none!important;background:linear-gradient(90deg,#3b82f6,#8b5cf6)!important}
+.reset-main-btn:after{display:none!important}
+#otpResetBox{animation:none!important}
+.am-box{box-shadow:0 8px 24px rgba(7,16,38,.3)!important;will-change:auto!important}
+.am{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(10,22,55,.62)!important}
+/* forgot modal: webview ছোট হলেও নিজে মাপ মিলিয়ে নেয় (লম্বা ভাসমান layer নেই) */
+.reset-modal{height:auto!important;bottom:0!important}
+</style>
 </head>
 <body>
+<div id="hasiSplash" class="show" aria-hidden="false" role="status" aria-label="Loading"><div class="hs-wrap"><span class="hs-pulse"></span><span class="hs-ring"></span><div class="hs-logo" id="hsLogo"><span id="hsLetter">H</span></div></div><div class="hs-dots"><i></i><i></i><i></i></div></div>
+<script>
+(function(){
+  var el=document.getElementById('hasiSplash'); if(!el)return;
+  var logo=document.getElementById('hsLogo'), letter=document.getElementById('hsLetter');
+  var t0=Date.now(), MIN=100, tm=0;
+  function hideIn(ms){clearTimeout(tm);tm=setTimeout(function(){el.classList.remove('show');el.setAttribute('aria-hidden','true')},Math.max(0,ms))}
+  window.hasiSplashShow=function(){el.classList.add('show');el.setAttribute('aria-hidden','false');hideIn(MIN)};
+  window.hasiSplashLogo=function(url){
+    var im=logo.querySelector('img');
+    if(url){if(!im){im=new Image();im.alt='';logo.appendChild(im)}if(im.getAttribute('src')!==url)im.src=url;letter.style.visibility='hidden'}
+    else{if(im)im.remove();letter.style.visibility='visible'}
+  };
+  try{var cached=JSON.parse(localStorage.getItem('hasi_fast_settings')||'{}');if(cached.logoRound)window.hasiSplashLogo(cached.logoRound)}catch(e){}
+  hideIn(4000); /* নিরাপত্তা: load না হলেও ৪ সেকেন্ডে বন্ধ */
+  function afterLoad(){hideIn(MIN-(Date.now()-t0))}
+  if(document.readyState==='complete')afterLoad();else window.addEventListener('load',afterLoad);
+  /* যেকোনো সেকশনে যাওয়া বা Back করলে ০.১ সেকেন্ড লোডিং */
+  window.addEventListener('hashchange',function(){window.hasiSplashShow()});
+})();
+</script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <symbol id="home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-6h6v6"/></symbol>
@@ -892,33 +1102,38 @@ html,body,.pk,.po,.btn,.pay,.q,.card,.nav a,.pv-back{touch-action:manipulation}
       <p class="am-err" id="amErr"></p>
       <button class="btn" type="submit" id="amGo">Login</button>
       <a class="am-lnk" href="#" id="amForgot">পাসওয়ার্ড ভুলে গেছেন?</a>
-      <div id="otpResetBox" class="reset-modal" hidden role="dialog" aria-modal="true" aria-labelledby="resetTitle">
-        <div class="reset-shade" id="resetShade"></div><section class="reset-card" id="resetCard">
-          <div class="rx-orb rx-o1"></div><div class="rx-orb rx-o2"></div>
-          <button type="button" class="reset-close" id="resetClose" aria-label="বন্ধ করুন">×</button>
-          <div class="reset-icon" id="resetIcon"><span id="resetIconIn">🔐</span></div><div class="reset-step" id="resetStepLbl">ACCOUNT RECOVERY</div>
-          <h3 id="resetTitle" class="reset-heading">পাসওয়ার্ড রিসেট</h3>
-          <p class="reset-sub" id="resetSub">Gmail দিলে ইমেইলে রিসেট লিংক যাবে। মোবাইল নাম্বার দিলে ৬ সংখ্যার কোড আসবে।</p>
-          <div class="reset-progress"><i id="resetProgress"></i></div>
-
-          <div id="resetStageContact" class="reset-stage"><label class="lbl" for="otpResetMail">Gmail অথবা মোবাইল নাম্বার</label><input class="inp reset-contact" id="otpResetMail" type="text" inputmode="email" autocomplete="username" placeholder="Gmail বা মোবাইল নাম্বার লিখুন"><button class="btn reset-main-btn" type="button" id="otpGetCode"><b id="otpGetCodeTxt" style="font-weight:inherit">Reset করুন</b> <span>→</span></button></div>
-
-          <div id="resetStageCode" class="reset-stage" hidden><p class="reset-stage-note" id="resetCodeNote">অ্যাডমিন আপনাকে WhatsApp-এ ৬ সংখ্যার কোড পাঠাবে। কোডটি এখানে লিখুন।</p><div class="otp-deck"><div class="otp-slots" aria-hidden="true"><span data-otp-slot="0"> </span><span data-otp-slot="1"> </span><span data-otp-slot="2"> </span><span data-otp-slot="3"> </span><span data-otp-slot="4"> </span><span data-otp-slot="5"> </span></div><input class="otp-code-input" id="otpResetCode" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" aria-label="৬ সংখ্যার কোড"></div><button class="btn reset-main-btn" type="button" id="otpVerifyCode"><b style="font-weight:inherit">Verify</b> <span>✓</span></button><button type="button" class="rx-resend" id="rxResend" disabled>আবার কোড চান</button></div>
-
-          <div id="resetStagePassword" class="reset-stage" hidden><label class="lbl" for="otpResetPass">নতুন পাসওয়ার্ড</label><div class="rx-pw"><input class="inp" id="otpResetPass" type="password" minlength="6" autocomplete="new-password" placeholder="কমপক্ষে ৬ অক্ষর"><button type="button" class="rx-eye" data-eye="otpResetPass" aria-label="দেখান">👁</button></div><div class="rx-meter"><i id="rxMeter"></i></div><span class="rx-meter-txt" id="rxMeterTxt"></span><label class="lbl reset-pass-label" for="otpResetPass2">পাসওয়ার্ড আবার লিখুন</label><div class="rx-pw"><input class="inp" id="otpResetPass2" type="password" minlength="6" autocomplete="new-password" placeholder="নতুন পাসওয়ার্ড নিশ্চিত করুন"><button type="button" class="rx-eye" data-eye="otpResetPass2" aria-label="দেখান">👁</button></div><button class="btn reset-main-btn" type="button" id="otpResetGo"><b style="font-weight:inherit">পাসওয়ার্ড সেট করুন</b> <span>✓</span></button></div>
-
-          <div id="resetStageDone" class="reset-stage" hidden><div class="rx-done"><div class="rx-confetti" id="rxConfetti"></div><svg class="rx-check" viewBox="0 0 52 52" aria-hidden="true"><circle class="rx-c" cx="26" cy="26" r="24"/><path class="rx-p" d="M14 27l8 8 16-17"/></svg><p id="resetDoneText"></p></div></div>
-
-          <p id="otpResetMsg" class="reset-message" aria-live="polite"></p><button type="button" class="reset-back" id="resetBack" hidden>← আগের ধাপে ফিরুন</button>
-        </section></div>
     </form>
   </div>
 </div>
+
+      <div id="otpResetBox" class="reset-modal" hidden role="dialog" aria-modal="true" aria-labelledby="resetTitle">
+  <div class="reset-shade" id="resetShade"></div><section class="reset-card" id="resetCard">
+    <div class="rx-orb rx-o1"></div><div class="rx-orb rx-o2"></div>
+    <button type="button" class="reset-close" id="resetClose" aria-label="বন্ধ করুন">×</button>
+    <div class="reset-icon" id="resetIcon"><span id="resetIconIn">🔐</span></div><div class="reset-step" id="resetStepLbl">ACCOUNT RECOVERY</div>
+    <h3 id="resetTitle" class="reset-heading">পাসওয়ার্ড রিসেট</h3>
+    <p class="reset-sub" id="resetSub">মোবাইল নাম্বার দিয়ে Get OTP চাপুন।</p>
+    <div class="reset-progress"><i id="resetProgress"></i></div>
+
+    <div id="resetStageContact" class="reset-stage"><label class="lbl" for="otpResetMail" id="rxContactLbl">মোবাইল নাম্বার</label><input class="inp reset-contact" id="otpResetMail" type="tel" inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX"><button class="btn reset-main-btn" type="button" id="otpGetCode"><b id="otpGetCodeTxt" style="font-weight:inherit">Get OTP</b> <span>→</span></button><p class="rx-hint" id="rxHint">রেজিস্টার করা মোবাইল নাম্বার দিন। Get OTP চাপলেই অ্যাডমিনের কাছে কোড তৈরি হবে এবং WhatsApp-এ আপনাকে পাঠানো হবে।</p><button type="button" class="rx-alt" id="rxSwitch">Gmail দিয়ে রিসেট লিংক নিন</button></div>
+
+    <div id="resetStageCode" class="reset-stage" hidden><p class="reset-stage-note" id="resetCodeNote">অ্যাডমিন আপনাকে WhatsApp-এ ৬ সংখ্যার কোড পাঠাবে। কোডটি এখানে লিখুন।</p><div class="otp-deck"><div class="otp-slots" aria-hidden="true"><span data-otp-slot="0"> </span><span data-otp-slot="1"> </span><span data-otp-slot="2"> </span><span data-otp-slot="3"> </span><span data-otp-slot="4"> </span><span data-otp-slot="5"> </span></div><input class="otp-code-input" id="otpResetCode" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" aria-label="৬ সংখ্যার কোড"></div><button class="btn reset-main-btn" type="button" id="otpVerifyCode"><b style="font-weight:inherit">Verify</b> <span>✓</span></button><button type="button" class="rx-resend" id="rxResend" disabled>আবার কোড চান</button></div>
+
+    <div id="resetStagePassword" class="reset-stage" hidden><label class="lbl" for="otpResetPass">নতুন পাসওয়ার্ড</label><div class="rx-pw"><input class="inp" id="otpResetPass" type="password" minlength="6" autocomplete="new-password" placeholder="কমপক্ষে ৬ অক্ষর"><button type="button" class="rx-eye" data-eye="otpResetPass" aria-label="দেখান">👁</button></div><div class="rx-meter"><i id="rxMeter"></i></div><span class="rx-meter-txt" id="rxMeterTxt"></span><label class="lbl reset-pass-label" for="otpResetPass2">পাসওয়ার্ড আবার লিখুন</label><div class="rx-pw"><input class="inp" id="otpResetPass2" type="password" minlength="6" autocomplete="new-password" placeholder="নতুন পাসওয়ার্ড নিশ্চিত করুন"><button type="button" class="rx-eye" data-eye="otpResetPass2" aria-label="দেখান">👁</button></div><button class="btn reset-main-btn" type="button" id="otpResetGo"><b style="font-weight:inherit">পাসওয়ার্ড সেট করুন</b> <span>✓</span></button></div>
+
+    <div id="resetStageDone" class="reset-stage" hidden><div class="rx-done"><div class="rx-confetti" id="rxConfetti"></div><svg class="rx-check" viewBox="0 0 52 52" aria-hidden="true"><circle class="rx-c" cx="26" cy="26" r="24"/><path class="rx-p" d="M14 27l8 8 16-17"/></svg><p id="resetDoneText"></p></div></div>
+
+    <p id="otpResetMsg" class="reset-message" aria-live="polite"></p><button type="button" class="reset-back" id="resetBack" hidden>← আগের ধাপে ফিরুন</button>
+  </section></div>
 
 <!-- GENERIC DIALOG -->
 <div class="am" id="dlg" role="dialog" aria-modal="true"><div class="am-box" id="dlgBox"></div></div>
 
 <div class="toast" id="toast"></div>
+
+<div id="hasiLoader" aria-hidden="true"><div class="h-loader-card"><div class="h-loader-ring"></div></div></div>
+<div id="hasiSuccess" aria-hidden="true"><div class="h-success-card"><div class="h-success-icon">✓</div><h3>লগইন সফল!</h3><p>আপনার অ্যাকাউন্ট প্রস্তুত হচ্ছে...</p></div></div>
+
 
 <footer id="siteFooter">
   <div class="wrap">
@@ -1002,6 +1217,7 @@ html,body,.pk,.po,.btn,.pay,.q,.card,.nav a,.pv-back{touch-action:manipulation}
 </div>
 
 <script>
+window.hasiLock=(function(){var s={};return function(k,on){if(on)s[k]=1;else delete s[k];document.documentElement.classList.toggle('no-scroll',Object.keys(s).length>0)}})();
 // ==========================================
 // 2. ULTRA-SMOOTH 4-SECOND HERO SLIDER
 // ==========================================
@@ -1266,26 +1482,32 @@ html,body,.pk,.po,.btn,.pay,.q,.card,.nav a,.pv-back{touch-action:manipulation}
   function openP(){
     if (typeof window.syncAccountLinks === 'function') window.syncAccountLinks();
     pop.classList.add('show');
-    document.body.style.overflow='hidden';
+    hasiLock('pop',1);
   }
-  function closeP(){ pop.classList.remove('show'); document.body.style.overflow=''; }
+  function closeP(){ pop.classList.remove('show'); hasiLock('pop',0); }
   document.getElementById('pclose').onclick = closeP;
   pop.addEventListener('click', function(e){ if (e.target === pop) closeP(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeP(); });
-  setTimeout(openP, 500);
+  setTimeout(openP, 600);
 
+  var fab = document.getElementById('fab');
   document.getElementById('fb').onclick = function(e){
     e.preventDefault(); e.stopPropagation();
-    if (typeof window.syncAccountLinks === 'function') window.syncAccountLinks();
-    document.getElementById('fab').classList.toggle('open');
+    fab.classList.toggle('open');
   };
+  document.addEventListener('click', function(e){
+    if (!fab.classList.contains('open')) return;
+    if (!e.target.closest('#fb')) fab.classList.remove('open');
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') fab.classList.remove('open'); });
 })();
+
 
 
 // ==========================================
 // FIREBASE: LOGIN / ORDERS / DEPOSITS / DYNAMIC PRODUCTS
 // ==========================================
-(function(){
+function __hasiMain(){
 'use strict';
 var $=function(id){return document.getElementById(id)};
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -1314,17 +1536,8 @@ var auth=firebase.auth(), db=firebase.firestore();
 // Faster loads: offline cache (instant 2nd visit) + auto fallback when the network blocks WebSockets.
 try{db.settings({experimentalAutoDetectLongPolling:true,merge:true})}catch(e){}
 try{db.enablePersistence({synchronizeTabs:true}).catch(function(){})}catch(e){}
-// Storage SDK is only needed for profile photos, so it loads on demand.
-var _stPromise=null;
-function getStorage(){
-  if(!_stPromise) _stPromise=new Promise(function(res,rej){
-    if(firebase.storage) return res(firebase.storage());
-    var s=document.createElement('script');s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js';
-    s.onload=function(){res(firebase.storage())};s.onerror=function(){_stPromise=null;rej(new Error('storage-load'))};
-    document.head.appendChild(s);
-  });
-  return _stPromise;
-}
+// Profile photo: shrink in the browser and keep it in the user's Firestore document (no Firebase Storage needed).
+function shrinkImage(file,max){return new Promise(function(res,rej){var r=new FileReader();r.onerror=rej;r.onload=function(){var im=new Image();im.onerror=rej;im.onload=function(){var k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*k));c.height=Math.max(1,Math.round(im.height*k));c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.82))};im.src=r.result};r.readAsDataURL(file)})}
 var TS=firebase.firestore.FieldValue.serverTimestamp;
 var unsubs=[], registering=false, CV={cat:null,prodId:'',pay:'Wallet Pay'};
 
@@ -1332,6 +1545,7 @@ var unsubs=[], registering=false, CV={cat:null,prodId:'',pay:'Wallet Pay'};
 function st(k,d){var v=S.settings[k];return (v==null||v==='')?(d||''):v}
 function applySettings(){
   window.FB_SETTINGS=S.settings;
+  if(window.hasiSplashLogo)window.hasiSplashLogo(S.settings.logoRound||'');
   if(typeof window.syncAccountLinks==='function') window.syncAccountLinks();
 }
 S.settings=(function(){try{var v=localStorage.getItem('hasi_fast_settings');return v?JSON.parse(v):{}}catch(e){return {}}})()||{};
@@ -1382,21 +1596,25 @@ db.collection('products').onSnapshot(function(s){
 var cachedTasks=readFastCache('tasks');if(Array.isArray(cachedTasks))S.tasks=cachedTasks;
 db.collection('tasks').where('active','==',true).onSnapshot(function(s){S.tasks=s.docs.map(dd);S.tasks.sort(byOrder);writeFastCache('tasks',S.tasks);refresh()},function(e){console.warn('tasks',e)});
 
+var homeHtml='';
 function renderHome(){
   var title=$('categorySectionTitle'), g=$('catGrid');
   var list=S.cats.filter(function(c){return c.active!==false}).sort(byOrder);
-  if(!list.length){if(title)title.textContent=S.settings.categorySectionTitle||'FREE FIRE TOPUP';g.innerHTML='<div class="em" style="grid-column:1/-1">এখনো কোনো ক্যাটাগরি নেই।</div>';return}
+  if(!list.length){if(title)title.textContent=S.settings.categorySectionTitle||'FREE FIRE TOPUP';var emp='<div class="em" style="grid-column:1/-1">এখনো কোনো ক্যাটাগরি নেই।</div>';if(homeHtml!==emp){homeHtml=emp;g.innerHTML=emp}return}
   var groups=[], seen={};
   list.forEach(function(c){
     var heading=String(c.sectionTitle||S.settings.categorySectionTitle||'FREE FIRE TOPUP').trim()||'FREE FIRE TOPUP';
     if(!seen[heading]){seen[heading]=true;groups.push({title:heading,cats:[]})}
     groups.filter(function(x){return x.title===heading})[0].cats.push(c);
   });
-  if(title) title.textContent=groups[0].title;
-  g.innerHTML=groups.map(function(gr,idx){
+  if(title&&title.textContent!==groups[0].title) title.textContent=groups[0].title;
+  var html=groups.map(function(gr,idx){
     var head=idx===0?'':'<div class="sec" style="grid-column:1/-1"><h2><em>'+esc(gr.title)+'</em></h2></div>';
     return head+gr.cats.map(function(c){return '<a class="card" href="#c/'+esc(c.id)+'"><div class="thumb ph"><img src="'+esc(c._displayImage||c.image||'')+'" alt="'+esc(c.name)+'" loading="lazy" decoding="async"></div><p>'+esc(c.name)+'</p></a>'}).join('');
   }).join('');
+  if(html===homeHtml) return;
+  homeHtml=html; g.innerHTML=html;
+  [].slice.call(g.querySelectorAll('img')).forEach(function(im,i){if(i<8){im.loading='eager'}});
 }
 
 // ---------- auth state ----------
@@ -1428,9 +1646,9 @@ function needLogin(){ if(S.user&&S.me) return false; if(S.user){toast('লোড
 
 // ---------- generic dialog ----------
 var dlg=$('dlg'), dlgBox=$('dlgBox');
-function openDlg(html){dlgBox.innerHTML='<button class="am-x" type="button" data-close aria-label="Close"><svg class="i"><use href="#x"/></svg></button>'+html;dlg.classList.add('show')}
-function closeDlg(){dlg.classList.remove('show')}
-dlg.addEventListener('click',function(e){if(e.target===dlg||e.target.closest('[data-close]'))closeDlg()});
+function openDlg(html){dlgBox.innerHTML='<button class="am-x" type="button" data-close aria-label="Close"><svg class="i"><use href="#x"/></svg></button>'+html;dlg.classList.remove('show');void dlg.offsetWidth;dlg.classList.add('show');document.body.classList.add('hpay-modal-lock')}
+function closeDlg(){dlg.classList.remove('show');document.body.classList.remove('hpay-modal-lock')} window.closeDlg=closeDlg;
+dlg.addEventListener('click',function(e){if(e.target===dlg||e.target.closest('[data-close]')){e.preventDefault();e.stopPropagation();closeDlg()}});
 function dlgMsg(t,m){openDlg('<h3>'+esc(t)+'</h3><p class="am-sub">'+esc(m)+'</p><button class="btn" type="button" data-close>ঠিক আছে</button>')}
 
 // ---------- router ----------
@@ -1447,15 +1665,22 @@ function route(scroll){
   setNavOn();
   if(scroll) window.scrollTo(0,0);
 }
+var lastPgKey='';
+function swapAnim(key){if(key===lastPgKey)return;lastPgKey=key;var b=$('pgBody');b.classList.remove('swap');void b.offsetWidth;b.classList.add('swap')}
 function profileInitial(){var n=(S.me&&S.me.name)||(S.user&&(S.user.displayName||S.user.email))||'U';n=String(n).trim();return (n.charAt(0)||'U').toLocaleUpperCase();}
+var avSig='';
 function paintAvatar(){
   var box=document.querySelector('#avBtn .av-inner');
   var url=(S.me&&S.me.photoURL)||(S.user&&S.user.photoURL)||'';
+  var sg=url?('u'+url.length+url.slice(-24)):('l'+profileInitial());
+  if(sg===avSig)return; avSig=sg;
   if(box) box.innerHTML=url?'<img src="'+esc(url)+'" alt="Profile">':'<span class="av-letter">'+esc(profileInitial())+'</span>';
   var side=document.getElementById('accAv');
   if(side) side.innerHTML=url?'<img src="'+esc(url)+'" alt="Profile" style="width:100%;height:100%;object-fit:cover;border-radius:inherit">':'<span style="font-weight:900;font-size:24px">'+esc(profileInitial())+'</span>';
 }
-function refresh(){
+var rfT=0;
+function refresh(){if(rfT)return;rfT=setTimeout(function(){rfT=0;doRefresh()},20)}
+function doRefresh(){
   paintAvatar();
   var b=$('walAmt'); if(b) b.textContent=S.me?money(S.me.balance):'0';
   var a=$('accName'); if(a){
@@ -1483,15 +1708,16 @@ function openCat(id){
   if(!CV.cat||CV.cat.id!==id){ CV.prodId=''; $('cvUid').value=''; $('cvPname').className='pname'; }
   CV.cat=cat;
   var need=cat.needUid!==false;
-  $('cvImg').src=cat._displayImage||localCategoryImage(cat)||cat.image||''; $('cvImg').alt=cat.name;
+  var cvSrc=cat._displayImage||localCategoryImage(cat)||cat.image||''; if($('cvImg').getAttribute('src')!==cvSrc) $('cvImg').src=cvSrc; $('cvImg').alt=cat.name;
   $('cvTitle').textContent=cat.name;
   $('cvAcc').hidden=!need; $('cvN3').textContent=need?'3':'2';
   var lb=cat.uidLabel||'এখানে গেমের আইডি কোড দিন'; $('cvUidLbl').textContent=lb; $('cvUid').placeholder=lb;
   var list=prodsOf(id);
   if(!list.some(function(p){return p.id===CV.prodId})) CV.prodId='';
-  $('cvPk').innerHTML=list.length?list.map(function(p){
+  var pkHtml=list.length?list.map(function(p){
     return '<button type="button" class="pk'+(p.id===CV.prodId?' on':'')+'" data-id="'+esc(p.id)+'"><span>'+esc(p.name)+'</span><b>BDT '+esc(p.price)+'</b></button>';
   }).join(''):'<div class="em" style="grid-column:1/-1;padding:20px">এই ক্যাটাগরিতে এখন কোনো প্যাকেজ নেই।</div>';
+  if(pkHtml!==openCat._pk){openCat._pk=pkHtml;$('cvPk').innerHTML=pkHtml}
   var how=cat.howTo||st('howTo'); $('cvHow').hidden=!how; if(how)$('cvHow').href=how;
   var p=curProd();
   $('cvNeed').textContent=p?p.price:0;
@@ -1589,6 +1815,7 @@ async function submitOrder(cat,p,pid,pay,ex,btn){
 var STL={pending:['p','পেন্ডিং'],processing:['p','প্রসেসিং'],completed:['ok','সম্পন্ন'],cancelled:['no','বাতিল'],approved:['ok','অনুমোদিত'],rejected:['no','বাতিল']};
 function badge(s){var x=STL[s]||['p',s];return '<span class="st '+x[0]+'">'+x[1]+'</span>'}
 function copyBtn(t){return '<button type="button" class="cp" data-copy="'+esc(t)+'">Copy</button>'}
+function fallbackCopy(v,done){var a=document.createElement('textarea');a.value=v;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(x){}a.remove();if(done)done();}
 document.addEventListener('click',function(e){
   var c=e.target.closest('[data-copy]'); if(!c) return;
   var t=c.dataset.copy;
@@ -1596,8 +1823,10 @@ document.addEventListener('click',function(e){
 });
 var addState={m:''};
 function renderPg(h){
-  $('pgTitle').textContent=PAGES[h];
-  var sig=h+':'+(h==='account'?JSON.stringify([S.me,S.user&&S.user.uid,S.authReady]):h==='orders'?JSON.stringify([S.orders,S.me&&S.me.balance,S.authReady]):h==='codes'?JSON.stringify([S.orders,S.authReady]):h==='transaction'?JSON.stringify([S.orders,S.deps,S.authReady]):JSON.stringify([S.deps,S.settings,S.authReady]));
+  $('pgView').classList.toggle('hpay-page',h==='addmoney');
+  if($('pgTitle').textContent!==PAGES[h]) $('pgTitle').textContent=PAGES[h];
+  swapAnim(h);
+  var sig=h+':'+(h==='account'?JSON.stringify([S.me,S.user&&S.user.uid,S.authReady,S.orders,S.deps,S.tasks,S.taskSubs,S.settings]):h==='orders'?JSON.stringify([S.orders,S.me&&S.me.balance,S.authReady]):h==='codes'?JSON.stringify([S.orders,S.authReady]):h==='transaction'?JSON.stringify([S.orders,S.deps,S.authReady]):JSON.stringify([S.deps,S.settings,S.authReady]));
   if(sig===lastSig) return; lastSig=sig;
   var b=$('pgBody');
   if(!S.authReady){b.innerHTML='<div class="em">লোড হচ্ছে...</div>';return}
@@ -1627,8 +1856,7 @@ function renderPg(h){
     b.innerHTML=tr.length?tr.map(function(x){
       return '<div class="li"><div class="li-h"><div><b>'+esc(x.l)+'</b><small>'+esc(x.s)+' • '+fd(x.t)+'</small></div><div style="text-align:right"><div class="amt '+x.c+'">'+esc(x.a)+'</div>'+badge(x.st)+'</div></div></div>';
     }).join(''):'<div class="em">কোনো ট্রানজেকশন নেই।</div>';
-  }else if(h==='addmoney') renderAdd(b);
-  else if(h==='account'){
+  }else if(h==='addmoney'){ $('pgView').classList.add('hpay-page'); renderAdd(b); }else if(h==='account'){
     var purl=(S.me.photoURL)||(S.user&&S.user.photoURL)||'';
     var pname=(S.me.name||S.user.displayName||S.user.email||'User');
     var initial=(String(pname).trim().charAt(0)||'U').toLocaleUpperCase();
@@ -1641,7 +1869,7 @@ function renderPg(h){
       '<div class="grid" style="grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><div class="pv-box" style="padding:14px"><small>মোট খরচ</small><div class="big">৳'+money(spent)+'</div></div><div class="pv-box" style="padding:14px"><small>মোট ডিপোজিট</small><div class="big">৳'+money(deposited)+'</div></div></div><section class="pv-box"><div class="pv-head"><h2>💰 ব্যালেন্স</h2></div><div class="pv-body"><div class="big" style="font-size:32px">৳'+money(S.me.balance)+'</div><button class="btn" type="button" id="pfDeposit">＋ Add Money</button></div></section>'+
       '<section class="pv-box"><div class="pv-head"><h2>🎯 Task & Win</h2></div><div class="pv-body">'+(taskHtml||'<div class="em">এখন কোনো টাস্ক নেই।</div>')+'</div></section>'+
       '<section class="pv-box"><div class="pv-head"><h2>🤝 Refer Program</h2></div><div class="pv-body"><p>আপনার রেফার কোড: <b>'+esc(myRef)+'</b></p><p style="margin-top:6px;color:var(--mu)">'+esc(S.settings.referralText||'বন্ধুকে রেফার করুন এবং অ্যাডমিন নির্ধারিত পুরস্কার পান।')+'</p><p style="margin-top:6px;font-weight:800;color:var(--v)">'+(Number(S.settings.referralPercent)>0?esc(S.settings.referralPercent)+'% কমিশন':'৳'+money(S.settings.referralAmount||0)+' রিওয়ার্ড')+'</p><button class="btn ghost" type="button" id="pfCopyRef">রেফার কোড কপি</button></div></section>'+
-      '<section class="pv-box"><div class="pv-head"><h2>Account Menu</h2></div><div class="pv-body"><button class="btn ghost" type="button" id="pfDeposit2">＋ Add Money</button><button class="btn ghost" type="button" id="pfCodes">▦ My Codes</button><button class="btn ghost" type="button" id="pfHistory">◷ My History</button><button class="btn ghost" type="button" id="pfDepHistory">▤ Deposit History</button><button class="btn ghost" type="button" id="pfPw">🔒 পাসওয়ার্ড রিসেট ইমেইল</button><button class="btn ghost" type="button" id="pfOut">↪ Logout</button></div></section>'+(isAdmin()?'<a class="btn" href="admin.html" style="margin-top:14px">Admin Panel</a>':'');
+      '<section class="pv-box"><div class="pv-head"><h2>Account Menu</h2></div><div class="pv-body"><button class="btn ghost" type="button" id="pfDeposit2">＋ Add Money</button><button class="btn ghost" type="button" id="pfCodes">▦ My Codes</button><button class="btn ghost" type="button" id="pfHistory">◷ My History</button><button class="btn ghost" type="button" id="pfDepHistory">▤ Deposit History</button><button class="btn ghost" type="button" id="pfPw">🔒 পাসওয়ার্ড রিসেট ইমেইল</button><button class="btn ghost" type="button" id="pfOut">↪ Logout</button></div></section>'+(isAdmin()?'<a class="btn" href="admin/" style="margin-top:14px">Admin Panel</a>':'');
     $('pfChangePhoto').onclick=function(){$('pfPhotoFile').click()};
     if($('pfDeposit'))$('pfDeposit').onclick=function(){go('addmoney')};if($('pfDeposit2'))$('pfDeposit2').onclick=function(){go('addmoney')};if($('pfCodes'))$('pfCodes').onclick=function(){go('codes')};if($('pfHistory'))$('pfHistory').onclick=function(){go('transaction')};if($('pfDepHistory'))$('pfDepHistory').onclick=function(){go('transaction')};if($('pfCopyRef'))$('pfCopyRef').onclick=function(){var x=myRef;if(navigator.clipboard)navigator.clipboard.writeText(x).then(function(){toast('রেফার কোড কপি হয়েছে')});else toast('রেফার কোড: '+x)};
     b.querySelectorAll('[data-task-submit]').forEach(function(btn){btn.onclick=function(){
@@ -1664,8 +1892,8 @@ function renderPg(h){
       if(!file.type||file.type.indexOf('image/')!==0){toast('শুধু ছবি নির্বাচন করুন');this.value='';return;}
       if(file.size>5*1024*1024){toast('ছবির সাইজ ৫ MB-এর কম হতে হবে');this.value='';return;}
       var btn=$('pfChangePhoto');btn.disabled=true;btn.textContent='আপলোড হচ্ছে...';
-      try{var path='profilePhotos/'+S.user.uid+'/profile_'+Date.now()+'.'+((file.name.split('.').pop()||'jpg').replace(/[^a-z0-9]/gi,'').slice(0,6)||'jpg');var storage=await getStorage();var snap=await storage.ref(path).put(file,{contentType:file.type});var url=await snap.ref.getDownloadURL();await db.collection('users').doc(S.user.uid).set({photoURL:url},{merge:true});if(S.user.updateProfile)await S.user.updateProfile({photoURL:url}).catch(function(){});toast('প্রোফাইল ছবি সেভ হয়েছে');}
-      catch(e){console.error(e);toast('ছবি সেভ হয়নি। Firebase Storage Rules চেক করুন।');}
+      try{var url=await shrinkImage(file,256);await db.collection('users').doc(S.user.uid).set({photoURL:url},{merge:true});toast('প্রোফাইল ছবি সেভ হয়েছে');}
+      catch(e){console.error(e);toast('ছবি সেভ হয়নি। আবার চেষ্টা করুন।');}
       finally{btn.disabled=false;btn.textContent='ছবি পরিবর্তন';this.value='';}
     };
     $('pfSave').onclick=function(){
@@ -1676,38 +1904,151 @@ function renderPg(h){
     $('pfOut').onclick=doLogout;
   }
 }
+function depositSuccessDlg(amount,method,trx){
+  openDlg('<div class="dep-ok"><svg class="dep-ic" viewBox="0 0 52 52" aria-hidden="true"><circle class="dc" cx="26" cy="26" r="24"/><path class="dp" d="M14 27l8 8 16-17"/></svg>'+
+    '<h3>ডিপোজিট রিকোয়েস্ট সফল!</h3>'+
+    '<p class="dep-sub">আপনার রিকোয়েস্ট অ্যাডমিনের কাছে পৌঁছেছে। যাচাই শেষ হলেই ব্যালেন্সে টাকা যোগ হবে।</p>'+
+    '<div class="dep-rows"><div><span>পরিমাণ</span><b class="big2">৳ '+esc(money(amount))+'</b></div><div><span>পদ্ধতি</span><b>'+esc(method)+'</b></div><div><span>TrxID</span><b>'+esc(trx)+'</b></div><div><span>স্ট্যাটাস</span><b><span class="st p">পেন্ডিং</span></b></div></div>'+
+    '<div class="am-row"><button class="btn ghost" type="button" data-close>ঠিক আছে</button><button class="btn" type="button" id="depView">ট্রানজেকশন দেখুন</button></div></div>');
+  var v=$('depView'); if(v) v.onclick=function(){closeDlg();go('transaction')};
+}
 function renderAdd(b){
   var ms=methods();
+  var min=Number(st('minDeposit',10))||10;
   if(ms.length&&!ms.some(function(m){return m.k===addState.m})) addState.m=ms[0].k;
-  b.innerHTML=
-   '<section class="pv-box"><div class="pv-head"><span class="n">1</span><h2>Payment Method</h2></div><div class="pv-body">'+
-   (ms.length?'<div class="mth" id="adM">'+ms.map(function(m){return '<button type="button" class="pk'+(m.k===addState.m?' on':'')+'" data-k="'+m.k+'"><span>'+m.name+'</span></button>'}).join('')+'</div><div class="pay-i" id="adI"></div>':'<div class="em" style="padding:16px">অ্যাডমিন এখনো পেমেন্ট নাম্বার সেট করেননি।</div>')+
-   '</div></section>'+
-   '<section class="pv-box"><div class="pv-head"><span class="n">2</span><h2>Deposit Info</h2></div><div class="pv-body">'+
-   '<label class="lbl">কত টাকা পাঠিয়েছেন?</label><input class="inp" id="adAmt" type="text" inputmode="numeric" placeholder="পরিমাণ (৳)">'+
-   '<label class="lbl mt">যে নাম্বার থেকে পাঠিয়েছেন</label><input class="inp" id="adSnd" type="tel" inputmode="tel" placeholder="01XXXXXXXXX">'+
-   '<label class="lbl mt">Transaction ID (TrxID)</label><input class="inp" id="adTrx" type="text" autocapitalize="characters" placeholder="যেমন: 9A7B6C5D4E">'+
-   '<p class="am-err" id="adErr"></p><button class="btn" type="button" id="adGo"'+(ms.length?'':' disabled')+'>ডিপোজিট রিকোয়েস্ট পাঠান</button></div></section>'+
-   '<div class="pg-t" style="font-size:17px">ডিপোজিট হিস্ট্রি</div>'+
-   (S.deps.length?S.deps.map(function(d){return '<div class="li"><div class="li-h"><div><b>৳'+money(d.amount)+' • '+esc(d.method)+'</b><small>TrxID: '+esc(d.trxId)+' • '+fd(d.createdAt)+'</small></div>'+badge(d.status)+'</div></div>'}).join(''):'<div class="em">কোনো ডিপোজিট নেই।</div>');
-  var mm=$('adM');
-  function info(){ if(!mm) return; var m=ms.filter(function(x){return x.k===addState.m})[0]; if(m) $('adI').innerHTML=m.name+' নাম্বার: <b>'+esc(m.num)+'</b> '+copyBtn(m.num)+'<br>এই নাম্বারে <b>Send Money</b> করুন, তারপর নিচের ফর্ম পূরণ করুন।<br>সর্বনিম্ন ডিপোজিট: <b>৳'+esc(st('minDeposit',10))+'</b>'}
-  info();
-  if(mm) mm.onclick=function(e){var x=e.target.closest('.pk');if(!x)return;addState.m=x.dataset.k;mm.querySelectorAll('.pk').forEach(function(y){y.classList.toggle('on',y===x)});info()};
-  $('adAmt').oninput=function(){this.value=this.value.replace(/\D/g,'')};
-  $('adGo').onclick=async function(){
-    var m=ms.filter(function(x){return x.k===addState.m})[0], amt=Number($('adAmt').value), snd=$('adSnd').value.trim(), trx=$('adTrx').value.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
-    var min=Number(st('minDeposit',10)), er=$('adErr'); er.textContent='';
-    if(!m) return;
-    if(!amt||amt<min){er.textContent='সর্বনিম্ন ডিপোজিট ৳'+min;return}
-    if(snd.replace(/\D/g,'').length<10){er.textContent='সঠিক মোবাইল নাম্বার দিন';return}
-    if(trx.length<6){er.textContent='সঠিক TrxID দিন';return}
-    var btn=this; btn.disabled=true; btn.textContent='অপেক্ষা করুন...';
-    try{
-      await db.collection('deposits').doc(('d_'+m.k+'_'+trx).slice(0,80)).set({uid:S.user.uid,userName:S.me.name,userEmail:S.me.email,method:m.name,amount:amt,senderNumber:snd,trxId:trx,status:'pending',createdAt:TS()});
-      toast('✅ ডিপোজিট রিকোয়েস্ট পাঠানো হয়েছে'); 
-    }catch(e){console.error(e);er.textContent=e.code==='permission-denied'?'এই TrxID আগে ব্যবহার করা হয়েছে অথবা অনুমতি নেই':errMsg(e);btn.disabled=false;btn.textContent='ডিপোজিট রিকোয়েস্ট পাঠান'}
-  };
+  var selectedAmt=Number(window.__hAddAmount||0)||0;
+  var step=Number(window.__hAddStep||1)||1;
+  var LG={bkash:'logoBkash',nagad:'logoNagad',rocket:'logoRocket'};
+  function mlogo(k){return LG[k]?st(LG[k]):''}
+  var rl=st('logoRound');
+  var logo=rl?'<div class="hpay-logo has" aria-label="Hasi"><img src="'+esc(rl)+'" alt="Hasi"></div>':'<div class="hpay-logo" aria-label="Hasi"><span>H</span></div>';
+  var amountChoices=[20,50,100,200,350,500,800,1000,1500,2000,3500,5000];
+
+  function methodCards(){
+    if(!ms.length) return '<div class="hpay-empty">অ্যাডমিন এখনো কোনো পেমেন্ট নাম্বার সেট করেননি।</div>';
+    return ms.map(function(m){
+      return '<button type="button" class="hpay-method '+(m.k===addState.m?'on':'')+'" data-k="'+esc(m.k)+'">'+
+        (mlogo(m.k)?'<div class="hpay-method-logo has"><img src="'+esc(mlogo(m.k))+'" alt="'+esc(m.name)+'"></div>':'<div class="hpay-method-logo '+esc(m.k)+'">'+esc(m.name.charAt(0))+'</div>')+
+        '<div><b>'+esc(m.name)+'</b><small>Personal Send Money</small></div>'+
+        '<i>›</i></button>';
+    }).join('');
+  }
+
+  function step1(){
+    return '<div class="hpay-screen hpay-in">'+
+      '<div class="hpay-top"><button type="button" class="hpay-back" data-hback>‹</button><div><small>Add Money</small><b>টাকা যোগ করুন</b></div></div>'+
+      '<div class="hpay-balance"><div><small>আপনার বর্তমান ব্যালেন্স</small><strong>৳ '+money(S.me&&S.me.balance)+'</strong></div><div class="hpay-wallet">▣</div></div>'+
+      '<div class="hpay-card"><div class="hpay-card-title"><b>টাকার পরিমাণ</b><span>ন্যূনতম ৳ '+money(min)+'</span></div>'+
+      '<div class="hpay-amount"><div class="hpay-amount-display">৳ <input id="hpayAmt" type="text" inputmode="decimal" autocomplete="off" value="'+(selectedAmt||'')+'" placeholder="0.00" aria-label="টাকার পরিমাণ"></div>'+
+      '<div class="hpay-amount-grid">'+amountChoices.map(function(n){return '<button type="button" data-amt="'+n+'" class="'+(selectedAmt===n?'on':'')+'">'+n+'</button>'}).join('')+'</div>'+
+      '<p class="hpay-err" id="hpayErr1"></p><button class="hpay-primary" type="button" id="hpayNext1">Payment Method <span>→</span></button></div></div>'+
+      '<div class="hpay-hint">সঠিক পরিমাণ নির্বাচন করে পরের ধাপে যান</div>'+
+    '</div>';
+  }
+
+  function step2(){
+    return '<div class="hpay-screen hpay-in">'+
+      '<div class="hpay-top"><button type="button" class="hpay-back" data-hback>‹</button><div><small>Step 2 of 3</small><b>পেমেন্ট পদ্ধতি নির্বাচন করুন</b></div></div>'+
+      '<div class="hpay-brand">'+logo+'<div><strong>Hasi</strong><small>নিরাপদ পেমেন্ট</small></div></div>'+
+      '<div class="hpay-pay-title">পেমেন্ট পদ্ধতি নির্বাচন করুন</div>'+
+      '<div class="hpay-methods">'+methodCards()+'</div>'+
+      '<div class="hpay-total"><span>আপনি যোগ করবেন</span><b>৳ '+money(selectedAmt)+'</b></div>'+
+      '<p class="hpay-err" id="hpayErr2"></p><button class="hpay-primary" type="button" id="hpayNext2" '+(ms.length?'':'disabled')+'>Payment করুন <span>→</span></button>'+
+      '<div class="hpay-steps"><i class="on"></i><i class="on"></i><i></i></div>'+
+    '</div>';
+  }
+
+  function step3(){
+    var m=ms.filter(function(x){return x.k===addState.m})[0];
+    return '<div class="hpay-screen hpay-in">'+
+      '<div class="hpay-top"><button type="button" class="hpay-back" data-hback>‹</button><div><small>Step 3 of 3</small><b>পেমেন্ট সম্পন্ন করুন</b></div></div>'+
+      '<div class="hpay-brand">'+logo+'<div><strong>Hasi</strong><small>'+(m?esc(m.name):'Payment')+'</small></div></div>'+
+      '<div class="hpay-pay-box">'+
+        '<div class="hpay-pay-line"><span>পেমেন্ট পদ্ধতি</span><b>'+(m&&mlogo(m.k)?'<img class="mini-logo" src="'+esc(mlogo(m.k))+'" alt="">':'')+esc(m?m.name:'')+'</b></div>'+
+        '<div class="hpay-pay-line"><span>পাঠানোর নাম্বার</span><div class="hpay-number-row"><b class="hpay-number">'+(m?esc(m.num):'')+'</b><button type="button" class="hpay-copy" data-hcopy="'+(m?esc(m.num):'')+'">Copy</button></div></div>'+
+        '<div class="hpay-pay-line"><span>টাকার পরিমাণ</span><div class="hpay-number-row"><b>৳ '+money(selectedAmt)+'</b><button type="button" class="hpay-copy" data-hcopy="'+String(selectedAmt)+'">Copy</button></div></div>'+
+      '</div>'+
+      '<div class="hpay-instructions"><b>কীভাবে পেমেন্ট করবেন</b><ol><li>আপনার '+esc(m?m.name:'payment')+' অ্যাপ খুলুন।</li><li>উপরের নাম্বারে <b>Send Money</b> করুন।</li><li>পেমেন্টের পর Transaction ID নিচে দিন।</li></ol></div>'+
+      '<div class="hpay-form"><label>যে নাম্বার থেকে পাঠিয়েছেন</label><input id="hpaySender" class="inp" type="tel" inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX">'+
+      '<label>আপনি যত টাকা পাঠিয়েছেন</label><input id="hpaySentAmt" class="inp" type="text" inputmode="decimal" autocomplete="off" value="'+money(selectedAmt).replace(/,/g,'')+'" placeholder="500">'+
+      '<label>Transaction ID</label><input id="hpayTrx" class="inp" type="text" inputmode="text" autocapitalize="characters" autocomplete="off" placeholder="Transaction ID লিখুন">'+
+      '<p class="hpay-err" id="hpayErr3"></p><button class="hpay-verify" type="button" id="hpayVerify">VERIFY <span>✓</span></button></div>'+
+      '<div class="hpay-steps"><i class="on"></i><i class="on"></i><i class="on"></i></div>'+
+    '</div>';
+  }
+
+  b.innerHTML='<div class="hpay-wrap" id="hpayWrap">'+(step===1?step1():step===2?step2():step3())+'</div>';
+
+  function bindCommon(){
+    b.querySelectorAll('[data-hback]').forEach(function(x){x.onclick=function(){
+      if(step>1){window.__hAddStep=step-1;renderAdd(b);}else{location.hash='';}
+    }});
+    b.querySelectorAll('.hpay-screen button,.hpay-method,.hpay-primary,.hpay-verify').forEach(function(x){
+      x.addEventListener('click',function(){x.classList.remove('hpay-touch');void x.offsetWidth;x.classList.add('hpay-touch')},{passive:true});
+    });
+    b.querySelectorAll('[data-hcopy]').forEach(function(x){x.onclick=function(ev){
+      ev.preventDefault();ev.stopPropagation();var v=x.getAttribute('data-hcopy')||'';
+      var done=function(){toast('কপি হয়েছে ✓')};
+      if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(v).then(done).catch(function(){fallbackCopy(v,done)}); else fallbackCopy(v,done);
+    }});
+  }
+
+  if(step===1){
+    var amt=$('hpayAmt'), err1=$('hpayErr1');
+    b.querySelectorAll('[data-amt]').forEach(function(btn){btn.onclick=function(){
+      var n=Number(btn.dataset.amt); window.__hAddAmount=n;
+      b.querySelectorAll('[data-amt]').forEach(function(x){x.classList.toggle('on',x===btn)});
+      if(amt) amt.value=n;
+      if(err1)err1.textContent='';
+    }});
+    if(amt) amt.oninput=function(){
+      this.value=this.value.replace(/[^\d.]/g,'');
+      window.__hAddAmount=Number(this.value)||0;
+      b.querySelectorAll('[data-amt]').forEach(function(x){x.classList.toggle('on',Number(x.dataset.amt)===window.__hAddAmount)});
+    };
+    $('hpayNext1').onclick=function(){
+      var n=Number(window.__hAddAmount)||0;
+      if(!n||n<min){err1.textContent='সর্বনিম্ন ডিপোজিট ৳'+min;return;}
+      window.__hAddStep=2; renderAdd(b);
+    };
+  }else if(step===2){
+    var mm=b.querySelector('.hpay-methods');
+    if(mm)mm.onclick=function(e){
+      var x=e.target.closest('.hpay-method');if(!x)return;
+      addState.m=x.dataset.k;mm.querySelectorAll('.hpay-method').forEach(function(y){y.classList.toggle('on',y===x)});
+    };
+    $('hpayNext2').onclick=function(){
+      if(!ms.length)return;
+      if(!addState.m){$('hpayErr2').textContent='একটি পেমেন্ট পদ্ধতি নির্বাচন করুন';return;}
+      window.__hAddStep=3;renderAdd(b);
+    };
+  }else{
+    $('hpaySentAmt').oninput=function(){this.value=this.value.replace(/[^\d.]/g,'')};
+    $('hpayTrx').oninput=function(){this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')};
+    $('hpayVerify').onclick=async function(){
+      var m=ms.filter(function(x){return x.k===addState.m})[0], sent=Number($('hpaySentAmt').value), snd=$('hpaySender').value.trim(), trx=$('hpayTrx').value.trim(), er=$('hpayErr3'), btn=this;
+      er.textContent='';
+      if(!m){er.textContent='পেমেন্ট পদ্ধতি পাওয়া যায়নি';return}
+      if(!sent||sent<min){er.textContent='সঠিক টাকার পরিমাণ দিন';return}
+      if(Math.abs(sent-selectedAmt)>0.01){er.textContent='নির্বাচিত টাকার পরিমাণের সাথে পাঠানো টাকার পরিমাণ মিলছে না';return}
+      if(snd.replace(/\D/g,'').length<10){er.textContent='যে নাম্বার থেকে পাঠিয়েছেন সেটি দিন';return}
+      if(trx.length<6){er.textContent='সঠিক Transaction ID দিন';return}
+      btn.disabled=true;btn.innerHTML='<span class="hpay-spin">⟳</span> VERIFY হচ্ছে...';
+      try{
+        await db.collection('deposits').doc(('d_'+m.k+'_'+trx).slice(0,80)).set({
+          uid:S.user.uid,userName:S.me.name,userEmail:S.me.email,method:m.name,amount:sent,senderNumber:snd,trxId:trx,status:'pending',createdAt:TS()
+        });
+        window.__hAddStep=1;window.__hAddAmount=0;
+        renderAdd(b);
+        depositSuccessDlg(sent,m.name,trx);
+      }catch(e){
+        console.error(e);
+        er.textContent=e.code==='permission-denied'?'এই TrxID আগে ব্যবহার করা হয়েছে অথবা অনুমতি নেই':errMsg(e);
+        btn.disabled=false;btn.innerHTML='VERIFY <span>✓</span>';
+      }
+    };
+  }
+  bindCommon();
 }
 
 // ---------- login / register ----------
@@ -1719,10 +2060,19 @@ function setMode(m){
   $('amGo').textContent=reg?'Register':'Login'; $('amForgot').style.display=reg?'none':'block'; $('amErr').textContent='';
   $('amPass').autocomplete=reg?'new-password':'current-password';
 }
-function openAuth(m){closeDlg();setMode(m||'login');am.classList.add('show');document.getElementById('accPanel').classList.remove('show')}
-function closeAuth(){am.classList.remove('show')}
-window.openAuth=openAuth;
-$('amX').onclick=closeAuth; am.addEventListener('click',function(e){if(e.target===am)closeAuth()});
+function openAuth(m){
+  closeDlg();setMode(m||'login');
+  am.classList.remove('show');void am.offsetWidth;am.classList.add('show');
+  document.getElementById('accPanel').classList.remove('show');
+  document.body.classList.add('hpay-modal-lock');
+  setTimeout(function(){try{var f=(mode==='login'?$('amMail'):(mode==='reg'?$('amName'):null));if(f&&!/android/i.test(navigator.userAgent))f.focus({preventScroll:true});}catch(e){}},180);
+}
+function closeAuth(){
+  am.classList.remove('show');document.body.classList.remove('hpay-modal-lock');
+  try{document.activeElement&&document.activeElement.blur()}catch(e){}
+}
+window.openAuth=openAuth;window.closeAuth=closeAuth;
+$('amX').onclick=function(e){e.preventDefault();e.stopPropagation();closeAuth()};am.addEventListener('click',function(e){if(e.target===am)closeAuth()});
 am.querySelectorAll('.am-tabs button').forEach(function(b){b.onclick=function(){setMode(b.dataset.t)}});
 function authErr(e){
   var c=e&&e.code||'';
@@ -1754,14 +2104,21 @@ $('amForm').addEventListener('submit',async function(ev){
       }catch(e2){ try{await cred.user.delete()}catch(x){} throw e2; }
       registering=false; toast('✅ রেজিস্ট্রেশন সফল!');
     } else {
-      await auth.signInWithEmailAndPassword(mail,pw); toast('✅ লগইন সফল');
+      await auth.signInWithEmailAndPassword(mail,pw);
+      closeAuth();
+      $('amPass').value=''; $('amPass2').value='';
+      window.hasiLoading(true);
+      setTimeout(function(){window.hasiLoginSuccess();},850);
+      return;
     }
     closeAuth(); $('amPass').value=''; $('amPass2').value='';
+    window.hasiLoading(true);
+    setTimeout(function(){window.hasiLoginSuccess();},650);
   }catch(e){ registering=false; console.error(e); er.textContent=authErr(e); }
   finally{ go.disabled=false; go.textContent=old; }
 });
-// ================= password reset: Gmail link OR mobile-number code =================
-var RX={phone:'',code:'',step:1,timer:null,fnP:null};
+// ================= password reset: Gmail link OR mobile-number code (works on the free plan) =================
+var RX={key:'',step:1,timer:null,oob:'',oobEmail:'',mode:'phone'};
 var RX_STEPS={
   1:{ic:'🔐',t:'পাসওয়ার্ড রিসেট',s:'Gmail দিলে ইমেইলে রিসেট লিংক যাবে। মোবাইল নাম্বার দিলে ৬ সংখ্যার কোড আসবে।'},
   2:{ic:'💬',t:'কোড যাচাই করুন',s:'অ্যাডমিনের পাঠানো ৬ সংখ্যার কোডটি লিখুন।'},
@@ -1769,41 +2126,37 @@ var RX_STEPS={
   4:{ic:'✅',t:'সম্পন্ন!',s:''}
 };
 var RX_IDS=['resetStageContact','resetStageCode','resetStagePassword','resetStageDone'];
+function rxSub1(){return RX.mode==='phone'?'রেজিস্টার করা মোবাইল নাম্বার দিয়ে Get OTP চাপুন।':'Gmail ঠিকানা দিন — ইমেইলে রিসেট লিংক যাবে।'}
+function rxSetMode(m){
+  RX.mode=m;var ph=m==='phone',i=$('otpResetMail');
+  $('rxContactLbl').textContent=ph?'মোবাইল নাম্বার':'Gmail ঠিকানা';
+  i.type=ph?'tel':'email';i.setAttribute('inputmode',ph?'tel':'email');i.setAttribute('autocomplete',ph?'tel':'email');i.placeholder=ph?'01XXXXXXXXX':'example@gmail.com';i.value='';
+  $('otpGetCodeTxt').textContent=ph?'Get OTP':'Reset Link পাঠান';
+  $('rxHint').textContent=ph?'রেজিস্টার করা মোবাইল নাম্বার দিন। Get OTP চাপলেই অ্যাডমিনের কাছে কোড তৈরি হবে এবং WhatsApp-এ আপনাকে পাঠানো হবে।':'আপনার অ্যাকাউন্টের Gmail দিন। ইমেইলে পাসওয়ার্ড রিসেট লিংক যাবে।';
+  $('rxSwitch').textContent=ph?'Gmail দিয়ে রিসেট লিংক নিন':'মোবাইল নাম্বার দিয়ে OTP নিন';
+  if(RX.step===1){$('resetSub').textContent=rxSub1()}
+}
 function rxRetrigger(el,cls){el.classList.remove(cls);void el.offsetWidth;el.classList.add(cls)}
+function rxMask(m){m=String(m||'');var i=m.indexOf('@');return i<2?m:m.slice(0,2)+'•••'+m.slice(i)}
 function rxShowStep(n){
   RX.step=n;
-  RX_IDS.forEach(function(id,i){
-    var el=$(id); if(i+1===n){el.hidden=false;el.style.animation='none';void el.offsetWidth;el.style.animation=''}else el.hidden=true;
-  });
+  RX_IDS.forEach(function(id,i){var el=$(id);if(i+1===n){el.hidden=false;el.style.animation='none';void el.offsetWidth;el.style.animation=''}else el.hidden=true});
   var d=RX_STEPS[n];
   $('resetIconIn').textContent=d.ic;rxRetrigger($('resetIconIn'),'rx-swap');
   $('resetTitle').textContent=d.t;rxRetrigger($('resetTitle'),'rx-textin');
-  $('resetSub').textContent=d.s;$('resetSub').hidden=!d.s;rxRetrigger($('resetSub'),'rx-textin');
-  $('resetStepLbl').textContent=n<4?('ধাপ '+n+' / 3'):'ACCOUNT RECOVERY';
+  var sb=(n===1?rxSub1():d.s);$('resetSub').textContent=sb;$('resetSub').hidden=!sb;rxRetrigger($('resetSub'),'rx-textin');
+  $('resetStepLbl').textContent=n<4?(RX.oob?'নতুন পাসওয়ার্ড':'ধাপ '+n+' / 2'):'ACCOUNT RECOVERY';
   $('resetProgress').style.width=(n===4?100:n*30)+'%';
-  $('resetBack').hidden=!(n===2||n===3);
+  $('resetBack').hidden=!(n===2);
   $('otpResetMsg').textContent='';
 }
 function rxMsg(text,ok){var m=$('otpResetMsg');m.style.color=ok?'#067647':'#b42318';m.textContent=text;if(!ok){rxRetrigger($('resetCard'),'rx-shake');setTimeout(function(){$('resetCard').classList.remove('rx-shake')},520)}}
 function rxBusy(btn,on){btn.disabled=on;btn.classList.toggle('rx-busy',on);var sp=btn.querySelector('span');if(sp){if(on){btn._o=sp.textContent;sp.textContent='⟳'}else if(btn._o)sp.textContent=btn._o}}
-function rxFns(){
-  if(!RX.fnP) RX.fnP=new Promise(function(res,rej){
-    function ok(){try{res(firebase.app().functions('us-central1'))}catch(e){rej(e)}}
-    if(firebase.functions) return ok();
-    var s=document.createElement('script');s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js';
-    s.onload=ok;s.onerror=function(){RX.fnP=null;rej(new Error('functions-load'))};document.head.appendChild(s);
-  });
-  return RX.fnP;
-}
-function rxCall(name,data){return rxFns().then(function(f){return f.httpsCallable(name)(data)}).then(function(r){return r.data})}
 function rxErr(x){
   console.error('reset',x);var c=x&&x.code||'';
-  if(c==='functions/not-found'||c==='functions/internal'||c==='functions/unavailable'||(x&&x.message==='functions-load'))return 'রিসেট সার্ভিস এখন চালু নেই। অ্যাডমিনকে জানান (Cloud Function deploy করা দরকার)।';
-  if(c==='auth/network-request-failed')return 'ইন্টারনেট সংযোগ চেক করুন।';
-  if(c==='auth/too-many-requests')return 'অনেকবার চেষ্টা হয়েছে। কিছুক্ষণ পরে আবার চেষ্টা করুন।';
-  if(c==='auth/invalid-email')return 'ইমেইল ঠিকানাটি সঠিক নয়।';
-  if(c==='auth/operation-not-allowed')return 'Firebase Console-এ Email/Password Authentication চালু করুন।';
-  return (x&&x.message)||'কিছু একটা সমস্যা হয়েছে।';
+  if(c==='permission-denied')return 'এখন সম্ভব হচ্ছে না। ১ মিনিট পর আবার চেষ্টা করুন (বারবার চাইলে আটকে যায়)।';
+  var m={'auth/network-request-failed':'ইন্টারনেট সংযোগ চেক করুন।','auth/too-many-requests':'অনেকবার চেষ্টা হয়েছে। কিছুক্ষণ পরে আবার চেষ্টা করুন।','auth/invalid-email':'ইমেইল ঠিকানাটি সঠিক নয়।','auth/operation-not-allowed':'Firebase Console-এ Email/Password Authentication চালু করুন।','auth/expired-action-code':'লিংকের মেয়াদ শেষ। আবার রিসেট করুন।','auth/invalid-action-code':'লিংকটি আগেই ব্যবহার হয়েছে বা ভুল। আবার রিসেট করুন।','auth/weak-password':'পাসওয়ার্ড আরও শক্তিশালী দিন (কমপক্ষে ৬ অক্ষর)।'}[c];
+  return m||(x&&x.message)||'কিছু একটা সমস্যা হয়েছে।';
 }
 function paintResetOtp(){
   var input=$('otpResetCode');if(!input)return;
@@ -1830,78 +2183,99 @@ function rxConfetti(){
     b.style.animationDelay=(Math.random()*.35)+'s';b.style.animationDuration=(1.5+Math.random()*.9)+'s';box.appendChild(b)}
 }
 function rxDone(kind,email){
-  rxShowStep(4);
+  rxShowStep(4);var wait=3200;
   if(kind==='mail'){
     $('resetIconIn').textContent='✉️';$('resetTitle').textContent='ইমেইল পাঠানো হয়েছে';
     $('resetDoneText').textContent='আপনার Gmail-এর Inbox (না পেলে Spam) খুলে রিসেট লিংকে চাপ দিন, তারপর নতুন পাসওয়ার্ড দিন।';
+  }else if(kind==='verified'){
+    $('resetIconIn').textContent='🎉';$('resetTitle').textContent='যাচাই সফল!';
+    $('resetDoneText').textContent='আপনার অ্যাকাউন্ট ('+rxMask(email)+') যাচাই হয়েছে। এই Gmail-এ নতুন পাসওয়ার্ড সেট করার লিংক পাঠানো হয়েছে — Inbox / Spam খুলে লিংকে চাপ দিন।';rxConfetti();wait=7000;
   }else{
-    $('resetDoneText').textContent='আপনার পাসওয়ার্ড সফলভাবে পরিবর্তন হয়েছে। এখন নতুন পাসওয়ার্ড দিয়ে লগইন করুন।';rxConfetti();
+    $('resetDoneText').textContent='আপনার পাসওয়ার্ড সফলভাবে পরিবর্তন হয়েছে। এখন নতুন পাসওয়ার্ড দিয়ে লগইন করুন।';rxConfetti();wait=2800;
   }
   setTimeout(function(){
-    if($('otpResetBox').hidden)return;closeResetModal();
-    if(kind!=='mail'){if(email)$('amMail').value=email;$('amPass').value='';setTimeout(function(){$('amPass').focus()},120);toast('✅ পাসওয়ার্ড পরিবর্তন হয়েছে')}
-  },kind==='mail'?3600:3000);
+    if($('otpResetBox').hidden||RX.step!==4)return;closeResetModal();
+    if(kind==='pw'){if(email)$('amMail').value=email;$('amPass').value='';setTimeout(function(){$('amPass').focus()},120);toast('✅ পাসওয়ার্ড পরিবর্তন হয়েছে')}
+  },wait);
 }
-function closeResetModal(){$('otpResetBox').hidden=true;document.body.style.overflow='';clearInterval(RX.timer)}
-$('amForgot').onclick=function(e){
-  e.preventDefault();e.stopPropagation();
-  RX.phone='';RX.code='';['otpResetCode','otpResetPass','otpResetPass2'].forEach(function(id){$(id).value=''});paintResetOtp();
+function closeResetModal(){$('otpResetBox').hidden=true;hasiLock('rx',0);clearInterval(RX.timer);document.body.classList.remove('hpay-modal-lock');try{document.activeElement&&document.activeElement.blur()}catch(e){}}
+window.closeResetModal=closeResetModal;
+function rxOpen(){
+  RX.key='';['otpResetCode','otpResetPass','otpResetPass2'].forEach(function(id){$(id).value=''});paintResetOtp();
   $('rxMeter').style.width='0';$('rxMeterTxt').textContent='';
-  $('otpResetBox').hidden=false;document.body.style.overflow='hidden';
-  rxShowStep(1);
-  var mail=$('amMail').value.trim();if(mail&&!$('otpResetMail').value)$('otpResetMail').value=mail;
-  setTimeout(function(){$('otpResetMail').focus()},120);
+  $('otpResetBox').hidden=false;hasiLock('rx',1);document.body.classList.add('hpay-modal-lock');var rc=$('resetCard');if(rc){rc.classList.remove('reset-reopen');void rc.offsetWidth;rc.classList.add('reset-reopen');}
+}
+$('amForgot').onclick=function(e){
+  e.preventDefault();e.stopPropagation();RX.oob='';rxOpen();rxSetMode('phone');rxShowStep(1);
+  // modal এর অ্যানিমেশন শেষ হওয়ার পর keyboard খুলবে, তাই লাগবে না জ্যাম
+  setTimeout(function(){try{if(!$('otpResetBox').hidden)$('otpResetMail').focus({preventScroll:true})}catch(x){}},520);
 };
-$('resetClose').onclick=closeResetModal;$('resetShade').onclick=closeResetModal;
-$('resetBack').onclick=function(){rxShowStep(Math.max(1,RX.step-1));if(RX.step===1)clearInterval(RX.timer)};
+$('resetClose').onclick=function(e){e.preventDefault();e.stopPropagation();closeResetModal()};$('resetShade').onclick=function(e){if(e.target===this)closeResetModal()};
+$('resetBack').onclick=function(){clearInterval(RX.timer);rxShowStep(1)};
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('otpResetBox').hidden)closeResetModal()});
 $('otpResetMail').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();$('otpGetCode').click()}});
-$('otpResetMail').addEventListener('input',function(){var v=this.value.trim();$('otpGetCodeTxt').textContent=v.indexOf('@')>=0?'Reset Link পাঠান':(v?'কোড চান':'Reset করুন')});
+$('otpResetMail').addEventListener('input',function(){if(RX.mode==='phone'){var v=this.value.replace(/[^\d+\s-]/g,'');if(v!==this.value)this.value=v}});
+$('rxSwitch').onclick=function(){rxSetMode(RX.mode==='phone'?'email':'phone');$('otpResetMail').focus()};
 $('otpResetCode').addEventListener('input',paintResetOtp);
 $('otpResetCode').addEventListener('focus',paintResetOtp);$('otpResetCode').addEventListener('blur',paintResetOtp);
 $('otpResetCode').addEventListener('paste',function(){setTimeout(paintResetOtp,0)});
 $('otpResetCode').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();$('otpVerifyCode').click()}});
 paintResetOtp();
 
-// step 1 — Gmail → link, number → code request
-async function rxRequest(btn){
-  var raw=$('otpResetMail').value.trim();
-  if(!raw){rxMsg('Gmail অথবা মোবাইল নাম্বার লিখুন।');return}
+// step 1 — Gmail -> link right away; number -> request (admin panel makes the 6-digit code)
+function rxSendRequest(digits){return db.collection('resetRequests').doc(digits.slice(-10)).set({phone:digits,status:'pending',createdAt:TS()})}
+$('otpGetCode').onclick=async function(){
+  var btn=this,raw=$('otpResetMail').value.trim();
+  if(RX.mode==='email'){
+    if(!raw){rxMsg('Gmail ঠিকানা লিখুন।');return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw)){rxMsg('ইমেইল ঠিকানাটি সঠিক নয়।');return}
+    rxBusy(btn,true);
+    try{await auth.sendPasswordResetEmail(raw.toLowerCase());rxDone('mail')}catch(x){rxMsg(rxErr(x))}finally{rxBusy(btn,false)}
+    return;
+  }
+  var digits=raw.replace(/\D/g,'');
+  if(!raw){rxMsg('মোবাইল নাম্বার লিখুন।');return}
+  if(digits.length<10||digits.length>15){rxMsg('সঠিক মোবাইল নাম্বার দিন।');return}
   rxBusy(btn,true);
   try{
-    if(raw.indexOf('@')>=0){
-      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw)){rxMsg('ইমেইল ঠিকানাটি সঠিক নয়।');return}
-      await auth.sendPasswordResetEmail(raw.toLowerCase());
-      rxDone('mail');
-    }else{
-      var digits=raw.replace(/\D/g,'');
-      if(digits.length<10||digits.length>15){rxMsg('সঠিক মোবাইল নাম্বার দিন।');return}
-      await rxCall('requestPhoneReset',{phone:digits});
-      RX.phone=digits;rxShowStep(2);
-      $('resetCodeNote').textContent='আপনার অ্যাকাউন্টের জন্য কোড তৈরি হয়েছে। অ্যাডমিন WhatsApp-এ '+('…'+digits.slice(-3))+' নাম্বারে কোড পাঠাবে। পেলে এখানে লিখুন (১৫ মিনিট বৈধ)।';
-      rxStartResend(60);setTimeout(function(){$('otpResetCode').value='';paintResetOtp();$('otpResetCode').focus()},350);
-    }
+    await rxSendRequest(digits);RX.key=digits.slice(-10);rxShowStep(2);
+    $('resetCodeNote').textContent='অনুরোধ গেছে ✓ অ্যাডমিনের কাছে কোড তৈরি হয়েছে। WhatsApp-এ ৬ সংখ্যার কোড পেলে এখানে লিখুন (১৫ মিনিট বৈধ)।';
+    rxStartResend(62);setTimeout(function(){$('otpResetCode').value='';paintResetOtp();$('otpResetCode').focus()},350);
   }catch(x){rxMsg(rxErr(x))}
   finally{rxBusy(btn,false)}
-}
-$('otpGetCode').onclick=function(){rxRequest(this)};
+};
 $('rxResend').onclick=async function(){
   var b=this;b.disabled=true;
-  try{await rxCall('requestPhoneReset',{phone:RX.phone});rxMsg('✓ নতুন কোড তৈরি হয়েছে। অ্যাডমিনকে WhatsApp-এ জানান।',true);rxStartResend(60)}
+  try{await rxSendRequest(RX.key);rxMsg('✓ নতুন কোডের অনুরোধ গেছে। অ্যাডমিনের কাছ থেকে নতুন কোড নিন।',true);rxStartResend(62)}
   catch(x){rxMsg(rxErr(x));b.disabled=false}
 };
 
-// step 2 — verify code
+// step 2 — check the code, then send the reset link to the account's own Gmail
 $('otpVerifyCode').onclick=async function(){
-  var code=$('otpResetCode').value.trim();
+  var code=$('otpResetCode').value.trim(),btn=this;
   if(!/^[0-9]{6}$/.test(code)){rxMsg('৬ সংখ্যার পূর্ণ কোড লিখুন।');return}
-  rxBusy(this,true);
-  try{await rxCall('verifyResetCode',{phone:RX.phone,code:code});RX.code=code;clearInterval(RX.timer);rxShowStep(3);setTimeout(function(){$('otpResetPass').focus()},350)}
-  catch(x){rxMsg(rxErr(x));$('otpResetCode').value='';paintResetOtp()}
-  finally{rxBusy(this,false)}
+  rxBusy(btn,true);
+  try{
+    var ref=db.collection('resetVerify').doc(RX.key+'_'+code),snap;
+    try{snap=await ref.get()}catch(x){if(x.code==='permission-denied')snap=null;else throw x}
+    if(!snap||!snap.exists)throw new Error('কোড ভুল অথবা মেয়াদ শেষ হয়েছে।');
+    var email=snap.data().email;if(!email)throw new Error('এই অ্যাকাউন্টে ইমেইল পাওয়া যায়নি।');
+    await auth.sendPasswordResetEmail(email);
+    ref.delete().catch(function(){});            // a code works only once
+    clearInterval(RX.timer);rxDone('verified',email);
+  }catch(x){rxMsg(rxErr(x));$('otpResetCode').value='';paintResetOtp();setTimeout(function(){$('otpResetCode').focus()},50)}
+  finally{rxBusy(btn,false)}
 };
 
-// step 3 — new password (+ show/hide, strength, match)
+// step 3 — opened from the e-mailed link: choose the new password inside the site
+function rxHandleLink(){
+  var q=new URLSearchParams(location.search);
+  if(q.get('mode')!=='resetPassword'||!q.get('oobCode'))return;
+  RX.oob=q.get('oobCode');openAuth('login');rxOpen();rxShowStep(3);$('resetSub').textContent='যাচাই হচ্ছে…';
+  auth.verifyPasswordResetCode(RX.oob).then(function(email){RX.oobEmail=email;$('resetSub').textContent=email+' — এই অ্যাকাউন্টের জন্য নতুন পাসওয়ার্ড দিন।';setTimeout(function(){$('otpResetPass').focus()},300)})
+    .catch(function(x){RX.oob='';rxShowStep(1);rxMsg(rxErr(x))});
+  try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}
+}
 document.addEventListener('click',function(e){
   var b=e.target.closest('[data-eye]');if(!b)return;var i=$(b.dataset.eye);var show=i.type==='password';i.type=show?'text':'password';b.textContent=show?'🙈':'👁';
 });
@@ -1916,10 +2290,11 @@ $('otpResetPass2').addEventListener('input',chk);
 $('otpResetPass2').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();$('otpResetGo').click()}});
 $('otpResetGo').onclick=async function(){
   var p1=$('otpResetPass').value,p2=$('otpResetPass2').value;
+  if(!RX.oob){rxMsg('লিংক থেকে আসুন: আগে রিসেট লিংক নিন।');return}
   if(p1.length<6){rxMsg('কমপক্ষে ৬ অক্ষরের পাসওয়ার্ড দিন।');return}
   if(p1!==p2){rxMsg('দুটি পাসওয়ার্ড মিলছে না।');return}
   rxBusy(this,true);
-  try{var r=await rxCall('redeemResetCode',{phone:RX.phone,code:RX.code,newPassword:p1});rxDone('pw',r&&r.email)}
+  try{await auth.confirmPasswordReset(RX.oob,p1);var em=RX.oobEmail;RX.oob='';rxDone('pw',em)}
   catch(x){rxMsg(rxErr(x))}
   finally{rxBusy(this,false)}
 };
@@ -1930,7 +2305,7 @@ function doLogout(){auth.signOut().then(function(){location.hash='';toast('ল�
 // Text appears one character at a time when each section scrolls into view.
 (function(){
   if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var selectors='.sec h2,footer h2,footer h3,.dl h3,.pv-head h2,.pg-t';
+  var selectors='footer h2,footer h3,.dl h3';
   function typeElement(el){
     if(el.dataset.typeDone==='1'||el.dataset.typing==='1') return;
     var original=el.textContent;
@@ -1958,9 +2333,6 @@ function doLogout(){auth.signOut().then(function(){location.hash='';toast('ল�
     });
   }
   observeNew();
-  if('MutationObserver' in window){
-    new MutationObserver(function(){observeNew()}).observe(document.body,{childList:true,subtree:true});
-  }
 })();
 
 // ---------- account panel + bottom nav ----------
@@ -1969,8 +2341,8 @@ function setNavOn(){
   var h=curHash(), i=panel.classList.contains('show')?4:({orders:1,addmoney:2,codes:3,account:4}[h]||0);
   navLinks.forEach(function(a,k){a.classList.toggle('on',k===i)});
 }
-function openAcc(){if(panel.classList.contains('show'))return;panel.classList.add('show');panel.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('fab').classList.remove('open');setNavOn()}
-function closeAcc(){if(!panel.classList.contains('show'))return;panel.classList.remove('show');panel.setAttribute('aria-hidden','true');document.body.style.overflow='';setNavOn()}
+function openAcc(){if(panel.classList.contains('show'))return;panel.classList.add('show');panel.setAttribute('aria-hidden','false');hasiLock('acc',1);$('fab').classList.remove('open');setNavOn()}
+function closeAcc(){if(!panel.classList.contains('show'))return;panel.classList.remove('show');panel.setAttribute('aria-hidden','true');hasiLock('acc',0);setNavOn()}
 $('avBtn').addEventListener('click',function(e){e.preventDefault();panel.classList.contains('show')?closeAcc():openAcc()});
 $('accClose').onclick=closeAcc;
 panel.addEventListener('click',function(e){if(e.target===panel)closeAcc()});
@@ -1990,13 +2362,139 @@ navLinks.forEach(function(a,k){
 $('walBtn').addEventListener('click',function(e){e.preventDefault();go('addmoney')});
 function ensureAdminLink(){
   var ex=document.getElementById('accAdm');
-  if(isAdmin()&&!ex){var a=document.createElement('a');a.id='accAdm';a.className='acc-it';a.href='admin.html';a.innerHTML='<svg class="i"><use href="#shield"/></svg>Admin Panel';document.querySelector('.acc-list').appendChild(a)}
+  if(isAdmin()&&!ex){var a=document.createElement('a');a.id='accAdm';a.className='acc-it';a.href='admin/';a.innerHTML='<svg class="i"><use href="#shield"/></svg>Admin Panel';document.querySelector('.acc-list').appendChild(a)}
   if(!isAdmin()&&ex) ex.remove();
 }
 
-route(true);
+// Android/browser back button: close overlays first, otherwise keep normal hash navigation.
+(function(){
+  var lastBack=0;
+  window.addEventListener('popstate',function(){
+    if(am.classList.contains('show')){closeAuth();return;}
+    if(!$('otpResetBox').hidden){closeResetModal();return;}
+    if(dlg.classList.contains('show')){closeDlg();return;}
+    if(panel.classList.contains('show')){closeAcc();return;}
+    route(true);
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Backspace'&&e.target===document.body){e.preventDefault();}});
 })();
+route(true);
+rxHandleLink();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',__hasiMain);else __hasiMain();
 
+
+(function(){
+  var loader=document.getElementById('hasiLoader'),success=document.getElementById('hasiSuccess');
+  window.hasiLoading=function(on){if(loader)loader.classList.toggle('show',!!on);};
+  window.hasiLoginSuccess=function(){
+    if(loader)loader.classList.remove('show');
+    if(success){
+      success.classList.add('show');
+      setTimeout(function(){success.classList.remove('show')},1250);
+    }
+  };
+  function addRipple(e){
+    // শুধু সাধারণ (in-flow) বাটনে ripple; cross/nav/fab/popup বাটনের position বা overflow কখনো বদলাবে না
+    var el=e.target.closest('.btn,.hpay-primary,.hpay-verify,.hpay-amount-grid button,.acc-lo,.acc-sup,.fbtn,.pbtn,.cp,.hpay-copy');
+    if(!el||el.disabled)return;
+    if(el.closest('.nav,.am-x,.pclose,.reset-close,.fb'))return;
+    var pos=getComputedStyle(el).position;
+    if(pos==='absolute'||pos==='fixed'||pos==='sticky')return;
+    var r=el.getBoundingClientRect();
+    el.classList.add('hasi-touch-ripple');
+    el.style.setProperty('--rx',((e.clientX||r.left+r.width/2)-r.left)+'px');
+    el.style.setProperty('--ry',((e.clientY||r.top+r.height/2)-r.top)+'px');
+    clearTimeout(el._hr);el._hr=setTimeout(function(){el.classList.remove('hasi-touch-ripple')},500);
+  }
+  document.addEventListener('pointerdown',addRipple,{passive:true});
+  var fab=document.getElementById('fb');
+  if(fab){
+    fab.addEventListener('click',function(){
+      fab.classList.remove('support-blink');void fab.offsetWidth;fab.classList.add('support-blink');
+    });
+  }
+  document.addEventListener('focusin',function(e){
+    if(!e.target.matches('input,textarea,select'))return;
+    setTimeout(function(){
+      try{
+        var modal=e.target.closest('.am-box,.reset-card');
+        if(modal){return;}
+        e.target.scrollIntoView({block:'nearest',inline:'nearest'});
+      }catch(x){}
+    },320);
+  });
+  window.hasiAnimateView=function(){
+    ['#homeView','#catView','#pgView'].forEach(function(sel){
+      var el=document.querySelector(sel);if(el&&!el.hidden){el.classList.remove('page-enter');void el.offsetWidth;el.classList.add('page-enter');}
+    });
+  };
+  window.addEventListener('hashchange',function(){setTimeout(window.hasiAnimateView,60)});
+  setTimeout(window.hasiAnimateView,60);
+})();
 </script>
+
+<script id="mobile-final-behavior">
+(function(){
+  var baseH=window.innerHeight, vvRaf=0;
+  function inputFocused(){var a=document.activeElement;return !!(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))}
+  function applyViewport(){
+    vvRaf=0;
+    var vv=window.visualViewport;
+    var h=(vv&&vv.height)||window.innerHeight;
+    // keyboard বন্ধ থাকলে baseline আপডেট (resizes-content মোডেও keyboard ধরা যাবে)
+    if(!inputFocused()||window.innerHeight>baseH)baseH=Math.max(window.innerHeight,h);
+    var keyboard=(baseH-h)>130;
+    document.documentElement.style.setProperty('--vvh',Math.max(240,Math.floor(h))+'px');
+    document.documentElement.style.setProperty('--baseh',Math.floor(baseH)+'px');
+    document.documentElement.style.setProperty('--kb',(keyboard?Math.max(0,Math.round(baseH-(h+((vv&&vv.offsetTop)||0)))):0)+'px');
+    document.documentElement.style.setProperty('--vvt',Math.max(0,Math.floor((vv&&vv.offsetTop)||0))+'px');
+    var reset=document.getElementById('otpResetBox'),am=document.getElementById('authM');
+    if(reset)reset.classList.toggle('keyboard-open',keyboard&&!reset.hidden);
+    if(am)am.classList.toggle('kb',keyboard&&am.classList.contains('show'));
+  }
+  function setViewportHeight(){if(!vvRaf)vvRaf=requestAnimationFrame(applyViewport)}
+  applyViewport();
+  window.addEventListener('orientationchange',function(){setTimeout(function(){baseH=window.innerHeight;applyViewport()},300)});
+  window.addEventListener('resize',setViewportHeight,{passive:true});
+  if(window.visualViewport){window.visualViewport.addEventListener('resize',setViewportHeight,{passive:true});window.visualViewport.addEventListener('scroll',setViewportHeight,{passive:true});}
+  function reveal(){
+    var a=document.activeElement; if(!a||!/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))return;
+    var box=a.closest&&a.closest('.am,.reset-modal'); if(!box)return;
+    var vv=window.visualViewport, top=vv?vv.offsetTop:0, vh=vv?vv.height:window.innerHeight;
+    var r=a.getBoundingClientRect(), d=(r.bottom+84)-(top+vh); /* ইনপুট + নিচের বাটনের জায়গা keyboard এর উপরে না থাকলে তবেই সামান্য scroll */
+    if(d>0)box.scrollBy({top:d,behavior:'smooth'});
+  }
+  var rvT=0; function revealSoon(ms){clearTimeout(rvT);rvT=setTimeout(reveal,ms)}
+  if(window.visualViewport)window.visualViewport.addEventListener('resize',function(){revealSoon(120)},{passive:true});
+  document.addEventListener('focusin',function(e){if(e.target.matches('input,textarea,select')){setTimeout(setViewportHeight,80);revealSoon(380)}});
+  document.addEventListener('focusout',function(){setTimeout(setViewportHeight,180)});
+  // Give Android/browser Back a clean overlay-first history step.
+  var overlayEntry=false;
+  function overlayOpen(){
+    return !!(document.getElementById('authM')&&document.getElementById('authM').classList.contains('show') ||
+      document.getElementById('otpResetBox')&&!document.getElementById('otpResetBox').hidden ||
+      document.getElementById('dlg')&&document.getElementById('dlg').classList.contains('show') ||
+      document.getElementById('accPanel')&&document.getElementById('accPanel').classList.contains('show'));
+  }
+  function armOverlayBack(){
+    if(overlayOpen()&&!overlayEntry){
+      try{history.pushState({hasiOverlay:true},'',location.href);overlayEntry=true;}catch(e){}
+    }
+  }
+  document.addEventListener('click',function(e){
+    if(e.target.closest('#amForgot,#amX,#resetClose,[data-close],#avBtn,.avatar,.acc-it'))setTimeout(armOverlayBack,0);
+  },true);
+  window.addEventListener('popstate',function(){
+    overlayEntry=false;
+    var am=document.getElementById('authM'),reset=document.getElementById('otpResetBox'),dlg=document.getElementById('dlg'),panel=document.getElementById('accPanel');
+    if(reset&&!reset.hidden&&typeof window.closeResetModal==='function'){window.closeResetModal();return;}
+    if(am&&am.classList.contains('show')&&typeof window.closeAuth==='function'){window.closeAuth();return;}
+    if(dlg&&dlg.classList.contains('show')&&typeof window.closeDlg==='function'){window.closeDlg();return;}
+    if(panel&&panel.classList.contains('show')){var x=document.getElementById('accClose');if(x)x.click();return;}
+  });
+})();
+</script>
+
 </body>
 </html>
